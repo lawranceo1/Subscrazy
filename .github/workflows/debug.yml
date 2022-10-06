@@ -1,0 +1,14 @@
+name: Debug and Build
+run-name: ${{ github.actor }} is debugging & building Subscrazy 🚀
+on: [push]
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      - name: Unit Tests
+        run: ./gradlew test

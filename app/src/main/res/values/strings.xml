@@ -20,10 +20,8 @@
     <string name="save">Save</string>
 
     <string-array name="timeselectarray">
-        <item>day</item>
-        <item>week</item>
-        <item>month</item>
-        <item>year</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
     </string-array>
 
 </resources>

@@ -23,7 +23,7 @@
             android:layout_marginTop="195dp"
             android:layout_marginEnd="92dp"
             android:layout_marginBottom="488dp"
-            android:autofillHints="00"
+            android:autofillHints="YYYY-MM-DD"
             android:ems="10"
             android:inputType="date"
             android:minHeight="48dp"
@@ -138,32 +138,12 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/_0_00"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/editText_cycle"
-            android:layout_width="34dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="109dp"
-            android:layout_marginTop="141dp"
-            android:layout_marginEnd="260dp"
-            android:layout_marginBottom="548dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/_0"
-            android:inputType="number"
-            android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.145"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
 
         <Spinner
             android:id="@+id/spinner_time"
@@ -175,8 +155,10 @@
             android:layout_marginBottom="550dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

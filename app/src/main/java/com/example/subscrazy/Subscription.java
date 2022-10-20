@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class Subscription {
     String name;
-    Date payment;
+    String payment;
 
     // for billing, ex: every 2(recurrence) months(billing_time)
-    int recurrence;
+    String recurrence;
     String billingTime;
 
     String notes;
 
     public Subscription(String name,
-                        Date payment,
-                        int recurrence,
+                        String payment,
+                        String recurrence,
                         String billingTime,
                         String notes) {
 
@@ -33,19 +33,19 @@ public class Subscription {
         this.name = name;
     }
 
-    public Date getPayment() {
+    public String getPayment() {
         return this.payment;
     }
 
-    public void setPayment(Date payment) {
+    public void setPayment(String payment) {
         this.payment = payment;
     }
 
-    public int getRecurrence() {
+    public String getRecurrence() {
         return this.recurrence;
     }
 
-    public void setRecurrence(int recurrence) {
+    public void setRecurrence(String recurrence) {
         this.recurrence = recurrence;
     }
 

@@ -25,7 +25,7 @@
             android:layout_marginBottom="488dp"
             android:autofillHints="00"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="date"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

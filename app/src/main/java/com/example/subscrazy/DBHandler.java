@@ -22,7 +22,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String NOTES_COL = "notes";
 
     public DBHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override

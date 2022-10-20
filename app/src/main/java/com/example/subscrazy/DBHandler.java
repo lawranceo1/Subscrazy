@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -21,7 +22,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String BILLING_COL = "billingTime";
     private static final String NOTES_COL = "notes";
 
-    public DBHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -31,7 +32,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NAME_COL + " TEXT,"
                 + PAYMENT_COL + " DATE,"
-                + RECURRENCE_COL + " INT,"
+                + RECURRENCE_COL + " MONEY,"
                 + BILLING_COL + " TEXT,"
                 + NOTES_COL + " TEXT)";
 

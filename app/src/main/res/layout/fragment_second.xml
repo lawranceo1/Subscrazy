@@ -12,25 +12,28 @@
         android:layout_height="match_parent"
         tools:context=".SecondFragment"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="169dp">
+        tools:layout_editor_absoluteY="-91dp">
 
 
         <EditText
             android:id="@+id/editText_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="109dp"
-            android:layout_marginTop="195dp"
-            android:layout_marginEnd="92dp"
-            android:layout_marginBottom="488dp"
-            android:autofillHints="YYYY-MM-DD"
+            android:layout_width="205dp"
+            android:layout_height="50dp"
             android:ems="10"
-            android:inputType="date"
-            android:minHeight="48dp"
+            android:hint="         Select Date"
+            android:padding="15dp"
+            android:textColor="#897"
+            android:textColorHint="#9D9D9D"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:focusable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.733"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.525"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/button_second"
@@ -46,7 +49,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/text_name"
@@ -61,7 +64,8 @@
             app:layout_constraintEnd_toStartOf="@+id/editText_name"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.759" />
 
         <TextView
             android:id="@+id/text_price"
@@ -70,51 +74,46 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="75dp"
             android:layout_marginEnd="317dp"
-            android:layout_marginBottom="615dp"
             android:text="@string/price"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.19" />
 
         <TextView
             android:id="@+id/text_Cycle"
             android:layout_width="79dp"
             android:layout_height="41dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="140dp"
             android:layout_marginEnd="316dp"
-            android:layout_marginBottom="550dp"
             android:text="@string/cycle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.404" />
 
         <TextView
             android:id="@+id/text_date"
             android:layout_width="79dp"
             android:layout_height="41dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="195dp"
-            android:layout_marginEnd="316dp"
-            android:layout_marginBottom="495dp"
             android:text="@string/bill_date"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editText_date"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/text_name"
+            app:layout_constraintVertical_bias="0.431" />
 
         <EditText
             android:id="@+id/editText_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="109dp"
             android:layout_marginTop="21dp"
-            android:layout_marginEnd="92dp"
-            android:layout_marginBottom="662dp"
             android:autofillHints=""
             android:clickable="false"
             android:ems="10"
@@ -124,17 +123,16 @@
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.671"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.128" />
 
         <EditText
             android:id="@+id/editText_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="109dp"
             android:layout_marginTop="75dp"
-            android:layout_marginEnd="92dp"
-            android:layout_marginBottom="608dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/_0_00"
@@ -142,23 +140,22 @@
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.671"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.192" />
 
         <Spinner
             android:id="@+id/spinner_time"
-            android:layout_width="150dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="169dp"
-            android:layout_marginTop="143dp"
-            android:layout_marginEnd="92dp"
-            android:layout_marginBottom="550dp"
+            android:layout_width="155dp"
+            android:layout_height="36dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.742"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.401"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

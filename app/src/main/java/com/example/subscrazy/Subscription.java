@@ -65,4 +65,18 @@ public class Subscription {
         this.notes = notes;
     }
 
+    public int getDatePart(String datePart){
+        String[] dateParts = this.billingTime.split("/");
+        if(datePart.compareTo("DAY")==0){
+            return Integer.parseInt(dateParts[0]);
+        }
+        if(datePart.compareTo("MONTH")==0){
+            return Integer.parseInt(dateParts[1]);
+        }
+        if(datePart.compareTo("YEAR")==0){
+            return Integer.parseInt(dateParts[2]);
+        }
+        return -1;
+    }
+
 }

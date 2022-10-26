@@ -65,10 +65,10 @@ public class DBHandler extends SQLiteOpenHelper {
             do {
                 subscriptionsArrayList.add(new Subscription(
                         cursorSubscriptions.getString(1),
-                        "CAD$ " + cursorSubscriptions.getString(2),
+                        cursorSubscriptions.getString(2),
                         cursorSubscriptions.getString(3),
-                        "Due Date: " + cursorSubscriptions.getString(4),
-                        "Notes: " + cursorSubscriptions.getString(5)));
+                        cursorSubscriptions.getString(4),
+                        cursorSubscriptions.getString(5)));
             } while (cursorSubscriptions.moveToNext());
         }
 

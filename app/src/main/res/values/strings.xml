@@ -24,4 +24,11 @@
         <item>Yearly</item>
     </string-array>
 
+    <string-array name="sortMenu">
+        <item>Name</item>
+        <item>Price</item>
+        <item>Date</item>
+    </string-array>
+
+
 </resources>

@@ -11,59 +11,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:orientation="vertical">
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/idSubscriptionName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="3dp"
+            android:layout_weight="1"
             android:text="Subscription Name"
             android:textColor="@color/black" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/idSubscriptionPrice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/idSubscriptionPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:text="Price"
-                android:textColor="@color/black" />
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Price"
+            android:textColor="@color/black" />
 
 
-            <!--text view for our course duration-->
-            <TextView
-                android:id="@+id/idSubscriptionRecurrence"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:text="Recurrence"
-                android:textColor="@color/black" />
+        <!--text view for our course duration-->
+        <TextView
+            android:id="@+id/idSubscriptionRecurrence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Recurrence"
+            android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/idSubscriptionBillingTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:text="Billing Time"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/idSubscriptionBillingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Billing Time"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/idSubscriptionNotes"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:padding="3dp"
             android:text="Notes"
             android:textColor="@color/black" />

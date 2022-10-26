@@ -28,7 +28,7 @@ public class SecondFragment extends Fragment {
     private DBHandler dbHandler;
 
     private FragmentSecondBinding binding;
-    Spinner recurrenceSpinner;
+    private Spinner recurrenceSpinner;
 
 
 

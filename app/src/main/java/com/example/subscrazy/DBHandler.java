@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
@@ -47,7 +45,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(NAME_COL, s.getName());
-        values.put(PAYMENT_COL, s.getPayment().toString());
+        values.put(PAYMENT_COL, s.getPayment());
         values.put(RECURRENCE_COL, s.getRecurrence());
         values.put(BILLING_COL, s.getBillingTime());
         values.put(NOTES_COL, s.getNotes());
@@ -59,8 +57,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Subscription> readSubscriptions() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-
+        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY billingTime", null);
+     //   Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         ArrayList<Subscription> subscriptionsArrayList = new ArrayList<>();
 
         if (cursorSubscriptions.moveToFirst()) {

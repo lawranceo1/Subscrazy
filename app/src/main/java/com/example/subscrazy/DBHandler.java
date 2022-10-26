@@ -2,11 +2,14 @@ package com.example.subscrazy;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -51,6 +54,27 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.insert(TABLE_NAME, null, values);
         db.close();
+    }
+
+    public ArrayList<Subscription> readSubscriptions() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        ArrayList<Subscription> subscriptionsArrayList = new ArrayList<>();
+
+        if (cursorSubscriptions.moveToFirst()) {
+            do {
+                subscriptionsArrayList.add(new Subscription(cursorSubscriptions.getString(1),
+                        cursorSubscriptions.getString(2),
+                        cursorSubscriptions.getString(3),
+                        cursorSubscriptions.getString(4),
+                        cursorSubscriptions.getString(5)));
+            } while (cursorSubscriptions.moveToNext());
+        }
+
+        cursorSubscriptions.close();
+        return subscriptionsArrayList;
     }
 
     @Override

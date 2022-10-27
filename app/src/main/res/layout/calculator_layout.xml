@@ -13,14 +13,15 @@
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:background="@color/white"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/black">
 
         <Button
             android:id="@+id/exitButton"
-            android:layout_width="wrap_content"
+            android:layout_width="427dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="#FFA500"
+            android:background="@null"
+            android:backgroundTint="@color/orange"
             android:gravity="center_vertical"
             android:text="Done" />
 
@@ -76,8 +77,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="C"
-                android:textColor="#FF0000"
+                android:textColor="@color/red"
                 android:textSize="@dimen/calcButtonTextSize" />
 
             <Button
@@ -86,8 +88,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="()"
-                android:textColor="#FFA500"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/calcButtonTextSize" />
 
             <Button
@@ -96,8 +99,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="^"
-                android:textColor="#FFA500"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/calcButtonTextSize" />
 
             <Button
@@ -106,8 +110,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="/"
-                android:textColor="#FFA500"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/calcButtonTextSize" />
 
         </LinearLayout>
@@ -123,6 +128,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="7"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -133,6 +139,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="8"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -143,7 +150,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
-
+                android:backgroundTint="@color/black"
                 android:text="9"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -154,8 +161,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="X"
-                android:textColor="#FFA500"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/calcButtonTextSize" />
 
         </LinearLayout>
@@ -172,6 +180,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="4"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -182,6 +191,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="5"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -192,6 +202,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="6"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -202,8 +213,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="-"
-                android:textColor="#FFA500"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/calcButtonTextSize" />
 
         </LinearLayout>
@@ -219,6 +231,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="1"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -229,6 +242,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -239,6 +253,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="3"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -249,8 +264,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="+"
-                android:textColor="#FFA500"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/calcButtonTextSize" />
 
         </LinearLayout>
@@ -266,6 +282,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="."
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -276,6 +293,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:backgroundTint="@color/black"
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize" />
@@ -286,7 +304,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#FFA500"
+                android:background="@null"
+                android:backgroundTint="@color/orange"
                 android:text="="
                 android:textColor="@color/white"
                 android:textSize="40sp" />

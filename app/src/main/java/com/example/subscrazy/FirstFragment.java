@@ -87,15 +87,17 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
        System.out.println("i = "+i);
-        if(i == 0){
+        if(i == 0){ //selected name from drop down list
             sort_with_Name(subscriptionArrayList);
-        }else if(i==1){
+        }else if(i==1){ //price
             sort_with_price(subscriptionArrayList);
-        }else if (i==2){
+        }else if (i==2){ //Date
             sort_with_Date(subscriptionArrayList);
         }
         subscriptionRVAdapter.notifyDataSetChanged();
     }
+
+
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {

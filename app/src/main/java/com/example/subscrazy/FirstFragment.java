@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subscrazy.databinding.FragmentFirstBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,6 +54,13 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_Calculator);
+            }
+         });
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
                 R.array.sortMenu, android.R.layout.simple_spinner_item);
@@ -138,6 +146,4 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
             }
         });
     }
-
-
 }

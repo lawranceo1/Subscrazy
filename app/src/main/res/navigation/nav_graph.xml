@@ -5,16 +5,32 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/FirstFragment">
 
+
+    <fragment
+        android:id="@+id/Calculator_Fragment"
+        android:name="com.example.subscrazy.Calculator"
+        android:label="@string/calculator"
+        tools:layout="@layout/calculator_layout">
+
+        <action
+            android:id="@+id/action_Calculator_to_FirstFragment"
+            app:destination="@id/FirstFragment"/>
+    </fragment>
+
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.subscrazy.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_FirstFragment_to_Calculator"
+            app:destination="@id/Calculator_Fragment"/>
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.subscrazy.SecondFragment"

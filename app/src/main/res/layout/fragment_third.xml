@@ -7,12 +7,6 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".ThirdFragment">
 
-    <Button
-        android:id="@+id/button_delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/delete" />
-
     <TextView
     android:id="@+id/text_name"
     android:layout_width="wrap_content"
@@ -21,51 +15,51 @@ tools:context=".ThirdFragment">
     android:layout_marginStart="5dp"
     android:text="@string/sub_name" />
 
-<EditText
-    android:id="@+id/editText_name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:autofillHints=""
-    android:clickable="false"
-    android:freezesText="false"
-    android:hint="@string/sub_name"
-    android:inputType="text" />
+    <EditText
+        android:id="@+id/editText_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:clickable="false"
+        android:freezesText="false"
+        android:hint="@string/sub_name"
+        android:inputType="text" />
 
-<TextView
-    android:id="@+id/text_price"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:text="@string/price" />
+    <TextView
+        android:id="@+id/text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/price" />
 
-<EditText
-    android:id="@+id/editText_price"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:autofillHints=""
-    android:ems="10"
-    android:hint="@string/_0_00"
-    android:inputType="numberDecimal" />
+    <EditText
+        android:id="@+id/editText_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/_0_00"
+        android:inputType="numberDecimal" />
 
-<TextView
-    android:id="@+id/text_Cycle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:text="@string/cycle" />
+    <TextView
+        android:id="@+id/text_Cycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/cycle" />
 
-<Spinner
-    android:id="@+id/spinner_time"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+    <Spinner
+        android:id="@+id/spinner_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-<TextView
-    android:id="@+id/text_date"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:text="@string/bill_date" />
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/bill_date" />
 
     <EditText
         android:id="@+id/editText_date"
@@ -82,5 +76,14 @@ tools:context=".ThirdFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
+        android:text="@string/delete" />
+
 
 </LinearLayout>

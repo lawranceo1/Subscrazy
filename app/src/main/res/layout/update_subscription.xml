@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SecondFragment">
+    android:orientation="vertical">
+
 
     <TextView
         android:id="@+id/text_name"
@@ -71,9 +71,10 @@
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button_save"
+        android:id="@+id/button_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save" />
+        android:text="@string/update" />
+
 
 </LinearLayout>

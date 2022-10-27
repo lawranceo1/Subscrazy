@@ -76,6 +76,32 @@ public class DBHandler extends SQLiteOpenHelper {
         return subscriptionsArrayList;
     }
 
+    public void updateSubscription(String originalSubName,
+                                   String subscriptionName,
+                                   String subscriptionPrice,
+                                   String subscriptionRecurrence,
+                                   String subscriptionBillDate,
+                                   String subscriptionNotes) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(NAME_COL, subscriptionName);
+        values.put(PAYMENT_COL, subscriptionPrice);
+        values.put(RECURRENCE_COL, subscriptionRecurrence);
+        values.put(BILLING_COL, subscriptionBillDate);
+        values.put(NOTES_COL, subscriptionNotes);
+
+        db.update(TABLE_NAME, values, "name=?", new String[]{originalSubName});
+        db.close();
+    }
+
+    public void deleteSubscription(String subscriptionName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_NAME, "name=?", new String[]{subscriptionName});
+        db.close();
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);

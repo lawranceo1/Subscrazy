@@ -100,7 +100,8 @@ public class ThirdFragment extends Fragment {
                     Toast.makeText(ThirdFragment.this.getContext(), "Please fill all fields..", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                
+
+//                dbHandler.updateSubscription(subName, price, recurrence, subDate);
 
                 Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been updated..", Toast.LENGTH_SHORT).show();
 
@@ -114,23 +115,23 @@ public class ThirdFragment extends Fragment {
             }
         });
 
-        deleteBtn = getView().findViewById(R.id.button_delete);
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
-
-                subNameEdt.setText("");
-                priceEdt.setText("");
-                recurrenceSpinner.setAdapter(null);
-                dateEdt.setText("");
-
-                NavHostFragment.findNavController(ThirdFragment.this)
-                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
-            }
-        });
+//        deleteBtn = getView().findViewById(R.id.button_delete);
+//        deleteBtn.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//
+//                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
+//
+//                subNameEdt.setText("");
+//                priceEdt.setText("");
+//                recurrenceSpinner.setAdapter(null);
+//                dateEdt.setText("");
+//
+//                NavHostFragment.findNavController(ThirdFragment.this)
+//                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
+//            }
+//        });
 
 //        binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
 //            @Override

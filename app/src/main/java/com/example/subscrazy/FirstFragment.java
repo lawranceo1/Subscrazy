@@ -72,7 +72,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
         subscriptionArrayList = dbHandler.readSubscriptions();
 
-        subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList, this.getContext());
+        subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList, this.getContext(), this);
         subscriptionRV = view.findViewById(R.id.idRVSubscriptions);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(),

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,10 +22,12 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
 
     private ArrayList<Subscription> subscriptionArrayList;
     private Context context;
+    private Fragment fragment;
 
-    public SubscriptionRVAdapter(ArrayList<Subscription> subscriptionArrayList, Context context) {
+    public SubscriptionRVAdapter(ArrayList<Subscription> subscriptionArrayList, Context context, Fragment fragment) {
         this.subscriptionArrayList = subscriptionArrayList;
         this.context = context;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -49,7 +52,6 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
 
             @Override
             public void onClick(View view) {
-                Fragment thirdFragment = new ThirdFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("name", sub.getName());
                 bundle.putString("price", sub.getPayment());
@@ -57,7 +59,9 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
                 bundle.putString("billDate", sub.getBillingTime());
                 bundle.putString("notes", sub.getNotes());
 
-                thirdFragment.setArguments(bundle);
+                fragment.setArguments(bundle);
+                NavHostFragment.findNavController(fragment)
+                        .navigate(R.id.action_FirstFragment_to_ThirdFragment);
             }
         });
     }

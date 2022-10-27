@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/ThirdFragment"
-        android:name="com.example.subscrazy.SecondFragment"
+        android:name="com.example.subscrazy.ThirdFragment"
         android:label="third_fragment_label"
         tools:layout="@layout/fragment_third">
 

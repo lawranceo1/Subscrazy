@@ -26,11 +26,12 @@ import java.util.Calendar;
 public class ThirdFragment extends Fragment {
 
     private EditText subNameEdt, priceEdt, dateEdt;
-    private Button saveBtn;
-    private DBHandler dbHandler;
-
-    private FragmentSecondBinding binding;
     private Spinner recurrenceSpinner;
+    private Button deleteBtn;
+
+    private DBHandler dbHandler;
+    private FragmentSecondBinding binding;
+
 
 
 
@@ -50,15 +51,15 @@ public class ThirdFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Context thisContext = this.getContext();
         dbHandler = new DBHandler(thisContext);
-
         recurrenceSpinner = getView().findViewById(R.id.spinner_time);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
                 R.array.timeselectarray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recurrenceSpinner.setAdapter(adapter);
 
+        Bundle bundle = this.getArguments();
+
         subNameEdt = getView().findViewById(R.id.editText_name);
-       // subNameEdt.setText("");
         priceEdt = getView().findViewById(R.id.editText_price);
         dateEdt = getView().findViewById(R.id.editText_date);
         dateEdt.setOnClickListener(new View.OnClickListener() {
@@ -93,30 +94,13 @@ public class ThirdFragment extends Fragment {
                 String price = priceEdt.getText().toString();
                 String recurrence = recurrenceSpinner.getSelectedItem().toString();
                 String subDate = dateEdt.getText().toString();
+                
+                
                 if (subName.isEmpty() || price.isEmpty() || recurrence.isEmpty() || subDate.isEmpty()) {
                     Toast.makeText(ThirdFragment.this.getContext(), "Please fill all fields..", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                Subscription sub = new Subscription(subName, price, recurrence, subDate, "");
-                dbHandler.addNewSubscription(sub);
-
-                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been updated..", Toast.LENGTH_SHORT).show();
-
-                subNameEdt.setText("");
-                priceEdt.setText("");
-                recurrenceSpinner.setAdapter(null);
-                dateEdt.setText("");
-
-                NavHostFragment.findNavController(ThirdFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
-        });
-
-        binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+                
 
                 Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been updated..", Toast.LENGTH_SHORT).show();
 
@@ -130,10 +114,41 @@ public class ThirdFragment extends Fragment {
             }
         });
 
+        deleteBtn = getView().findViewById(R.id.button_delete);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
+
+                subNameEdt.setText("");
+                priceEdt.setText("");
+                recurrenceSpinner.setAdapter(null);
+                dateEdt.setText("");
+
+                NavHostFragment.findNavController(ThirdFragment.this)
+                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
+            }
+        });
+
+//        binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
+//
+//                subNameEdt.setText("");
+//                priceEdt.setText("");
+//                recurrenceSpinner.setAdapter(null);
+//                dateEdt.setText("");
+//
+//                NavHostFragment.findNavController(ThirdFragment.this)
+//                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
+//            }
+//        });
     }
-
-
 
     @Override
     public void onDestroyView() {

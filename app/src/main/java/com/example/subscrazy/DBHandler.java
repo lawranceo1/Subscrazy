@@ -57,8 +57,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Subscription> readSubscriptions() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY billingTime", null);
-     //   Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+       // Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY billingTime", null);
+        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         ArrayList<Subscription> subscriptionsArrayList = new ArrayList<>();
 
         if (cursorSubscriptions.moveToFirst()) {

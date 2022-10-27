@@ -7,7 +7,13 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".ThirdFragment">
 
-<TextView
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete" />
+
+    <TextView
     android:id="@+id/text_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -71,10 +77,10 @@ tools:context=".ThirdFragment">
         android:textStyle="bold"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-<Button
-    android:id="@+id/button_save"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/save" />
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
 
 </LinearLayout>

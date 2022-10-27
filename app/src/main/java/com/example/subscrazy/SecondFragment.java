@@ -56,8 +56,8 @@ public class SecondFragment extends Fragment {
         recurrenceSpinner.setAdapter(adapter);
 
         subNameEdt = getView().findViewById(R.id.editText_name);
+        subNameEdt.setText("");
         priceEdt = getView().findViewById(R.id.editText_price);
-//        recurrenceSpinner = getView().findViewById(R.id.spinner_time);
         dateEdt = getView().findViewById(R.id.editText_date);
         dateEdt.setOnClickListener(new View.OnClickListener() {
                                        @Override

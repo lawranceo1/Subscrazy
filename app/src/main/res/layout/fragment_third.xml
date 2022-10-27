@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SecondFragment">
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".ThirdFragment">
 
     <TextView
-        android:id="@+id/text_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:text="@string/sub_name" />
+    android:id="@+id/text_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="5dp"
+    android:text="@string/sub_name" />
 
     <EditText
         android:id="@+id/editText_name"
@@ -65,9 +65,10 @@
         android:id="@+id/editText_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/select_date"
-        android:textStyle="bold"
         android:focusable="false"
+        android:hint="@string/select_date"
+        android:inputType="date"
+        android:textStyle="bold"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <Button
@@ -75,5 +76,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
+        android:text="@string/delete" />
+
 
 </LinearLayout>

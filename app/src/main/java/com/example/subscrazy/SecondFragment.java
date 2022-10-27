@@ -84,7 +84,7 @@ public class SecondFragment extends Fragment {
                                        }
         });
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+        binding.buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String subName = subNameEdt.getText().toString();

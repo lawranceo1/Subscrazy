@@ -31,9 +31,7 @@ public class ThirdFragment extends Fragment {
 
     private DBHandler dbHandler;
     private FragmentSecondBinding binding;
-
-
-
+    private Bundle subInfo;
 
     @Override
     public View onCreateView(
@@ -41,6 +39,7 @@ public class ThirdFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
+        subInfo = getArguments();
 
         return binding.getRoot();
 
@@ -56,8 +55,6 @@ public class ThirdFragment extends Fragment {
                 R.array.timeselectarray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recurrenceSpinner.setAdapter(adapter);
-
-        Bundle bundle = this.getArguments();
 
         subNameEdt = getView().findViewById(R.id.editText_name);
         priceEdt = getView().findViewById(R.id.editText_price);
@@ -86,6 +83,11 @@ public class ThirdFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
+
+        // show sub info from bundle
+        subNameEdt.setText(subInfo.getString("name"));  // this is where the error starts
+        priceEdt.setText(subInfo.getString("price"));
+        dateEdt.setText(subInfo.getString("billDate"));
 
         binding.buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override

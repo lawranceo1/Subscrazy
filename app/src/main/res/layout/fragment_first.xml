@@ -16,9 +16,10 @@
 
     <Spinner
         android:id="@+id/spinner_sort"
-        android:layout_width="155dp"
+        android:layout_width="107dp"
         android:layout_height="48dp"
         android:layout_above="@id/idRVSubscriptions"
+        android:layout_marginBottom="0dp"
         android:spinnerMode="dropdown"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
@@ -44,6 +45,28 @@
         android:src="@android:drawable/alert_dark_frame"
         app:backgroundTint="#F8F0F0"
         app:fabSize="mini" />
+
+    <TextView
+        android:id="@+id/total_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/idRVSubscriptions"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="13dp"
+        android:layout_toEndOf="@+id/spinner_sort"
+        android:text="Total = " />
+
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/idRVSubscriptions"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="13dp"
+        android:layout_toStartOf="@+id/button_first"
+        android:layout_toEndOf="@+id/total_text"
+        android:text="0.0" />
 
 
 </RelativeLayout>

@@ -22,7 +22,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String RECURRENCE_COL = "recurrence";
     private static final String BILLING_COL = "billingTime";
     private static final String NOTES_COL = "notes";
-
+    private double total_price;
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -38,6 +38,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + NOTES_COL + " TEXT)";
 
         sqLiteDatabase.execSQL(query);
+        total_price=0;
     }
 
     public void addNewSubscription(Subscription s) {
@@ -55,6 +56,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Subscription> readSubscriptions() {
+        total_price=0;
         SQLiteDatabase db = this.getReadableDatabase();
 
        // Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY billingTime", null);
@@ -63,6 +65,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if (cursorSubscriptions.moveToFirst()) {
             do {
+                total_price +=Double.parseDouble(cursorSubscriptions.getString(2));
                 subscriptionsArrayList.add(new Subscription(
                         cursorSubscriptions.getString(1),
                         cursorSubscriptions.getString(2),
@@ -101,9 +104,15 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
+
+    public double getTotalSpending() {
+        return this.total_price;
+    }
 }
+

@@ -1,6 +1,5 @@
 package com.example.subscrazy;
 
-import android.net.IpSecManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subscrazy.databinding.FragmentFirstBinding;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +30,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     private RecyclerView subscriptionRV;
     private Spinner sortMenu;
     private FragmentFirstBinding binding;
+    private TextView textView_for_total;
 
     @Override
     public View onCreateView(
@@ -45,6 +45,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+       textView_for_total = getView().findViewById(R.id.totalPrice);
         sortMenu = getView().findViewById(R.id.spinner_sort);
         sortMenu.setOnItemSelectedListener(this);
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +72,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         dbHandler = new DBHandler(this.getContext());
 
         subscriptionArrayList = dbHandler.readSubscriptions();
-
+        textView_for_total.setText(""+dbHandler.getTotalSpending());
         subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList, this.getContext(), this);
         subscriptionRV = view.findViewById(R.id.idRVSubscriptions);
 

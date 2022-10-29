@@ -101,6 +101,13 @@ public class SecondFragment extends Fragment {
                     return;
                 }
 
+                if (dbHandler.subscriptionExists(subName)) {
+                    Toast.makeText(SecondFragment.this.getContext(),
+                            "Subscription already exists.. Please try another one.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Subscription sub = new Subscription(subName, price, recurrence, subDate, "");
                 dbHandler.addNewSubscription(sub);
 

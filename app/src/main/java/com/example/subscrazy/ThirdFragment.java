@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.subscrazy.databinding.FragmentSecondBinding;
+import com.example.subscrazy.databinding.FragmentThirdBinding;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,7 +32,7 @@ public class ThirdFragment extends Fragment {
     private Spinner recurrenceSpinner;
     private Button deleteBtn;
     private DBHandler dbHandler;
-    private FragmentSecondBinding binding;
+    private FragmentThirdBinding binding;
   //  private Bundle subInfo;
 
     @Override
@@ -39,7 +40,7 @@ public class ThirdFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentThirdBinding.inflate(inflater, container, false);
       //  subInfo = getArguments();
 
 
@@ -122,24 +123,23 @@ public class ThirdFragment extends Fragment {
             }
         });
 
-        deleteBtn = getView().findViewById(R.id.button_delete);
-   //     deleteBtn.setOnClickListener(new View.OnClickListener() {
-
- //           @Override
- //           public void onClick(View view) {
+//        deleteBtn = getView().findViewById(R.id.button_delete);
+//        deleteBtn.setOnClickListener(new View.OnClickListener() {
 //
-//
+//            @Override
+//            public void onClick(View view) {
 //
 //                subNameEdt.setText("");
 //                priceEdt.setText("");
 //                recurrenceSpinner.setAdapter(null);
 //                dateEdt.setText("");
-//               deleteSubscription(SubscriptionRVAdapter.subname);
-//        Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
+//                dbHandler.deleteSubscription(SubscriptionRVAdapter.subname);
+//                Toast.makeText(ThirdFragment.this.getContext(),
+//                        "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
 //                NavHostFragment.findNavController(ThirdFragment.this)
 //                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
- //           }
-  //      });
+//            }
+//        });
 
 
     }

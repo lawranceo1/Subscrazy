@@ -63,7 +63,8 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
             }
          });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(getActivity().getBaseContext(),
                 R.array.sortMenu, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sortMenu.setAdapter(adapter);
@@ -74,7 +75,9 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         subscriptionArrayList = dbHandler.readSubscriptions();
        // textView_for_total.setText(""+dbHandler.getTotalSpending());
         textView_for_total.setText("$"+ Math.round(dbHandler.getTotalSpending() * 100.0) / 100.0);
-        subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList, this.getContext(), this);
+        subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList,
+                this.getContext(),
+                this);
         subscriptionRV = view.findViewById(R.id.idRVSubscriptions);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(),
@@ -119,7 +122,8 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
                 int comp;
                 if (Double.parseDouble(s1.getPayment()) < Double.parseDouble(s2.getPayment())) {
                     comp = -1;
-                } else if (Double.parseDouble(s1.getPayment()) == Double.parseDouble(s2.getPayment())) {
+                } else if (Double.parseDouble(s1.getPayment()) ==
+                        Double.parseDouble(s2.getPayment())) {
                     comp = 0;
                 } else {
                     comp = 1;

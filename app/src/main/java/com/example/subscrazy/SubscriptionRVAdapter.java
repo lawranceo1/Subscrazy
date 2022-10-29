@@ -29,7 +29,9 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
     private Context context;
     private Fragment fragment;
 
-    public SubscriptionRVAdapter(ArrayList<Subscription> subscriptionArrayList, Context context, Fragment fragment) {
+    public SubscriptionRVAdapter(ArrayList<Subscription> subscriptionArrayList,
+                                 Context context,
+                                 Fragment fragment) {
         this.subscriptionArrayList = subscriptionArrayList;
         this.context = context;
         this.fragment = fragment;
@@ -58,18 +60,6 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
 
             @Override
             public void onClick(View view) {
-              //  Intent intent =new Intent(view.getContext(), ThirdFragment.class);
-             //   Bundle bundle = new Bundle();
-              //  bundle.putString("name", sub.getName());
-             //   intent.putExtras(bundle);
-             /*
-                bundle.putString("price", sub.getPayment());
-                bundle.putString("recurrence", sub.getRecurrence());
-                bundle.putString("billDate", sub.getBillingTime());
-                bundle.putString("notes", sub.getNotes());
-                */
-
-
 
                 Bundle bundle = new Bundle();
                 Fragment frag = new SecondFragment();
@@ -82,7 +72,6 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
                 subbillingTime = sub.getBillingTime();
                 subnotes = sub.getNotes();
 
-              //  fragment.setArguments(bundle);
                 NavHostFragment.findNavController(fragment)
                         .navigate(R.id.action_FirstFragment_to_ThirdFragment);
             }

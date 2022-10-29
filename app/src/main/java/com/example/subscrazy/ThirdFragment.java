@@ -128,34 +128,20 @@ public class ThirdFragment extends Fragment {
  //           @Override
  //           public void onClick(View view) {
 //
-//                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
+//
 //
 //                subNameEdt.setText("");
 //                priceEdt.setText("");
 //                recurrenceSpinner.setAdapter(null);
 //                dateEdt.setText("");
-//
+//               deleteSubscription(SubscriptionRVAdapter.subname);
+//        Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
 //                NavHostFragment.findNavController(ThirdFragment.this)
 //                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
  //           }
   //      });
 
- //       binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
- //           @Override
-//            public void onClick(View view) {
-//
-//
-//                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
-//
-//                subNameEdt.setText("");
-//                priceEdt.setText("");
-//                recurrenceSpinner.setAdapter(null);
-//                dateEdt.setText("");
-//
-//                NavHostFragment.findNavController(ThirdFragment.this)
-//                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
-//            }
-//        });
+
     }
 
     @Override

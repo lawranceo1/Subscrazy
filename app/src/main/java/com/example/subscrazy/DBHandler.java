@@ -61,7 +61,8 @@ public class DBHandler extends SQLiteOpenHelper {
                                    String subscriptionName,
                                    String subscriptionPrice,
                                    String subscriptionRecurrence,
-                                   String subscriptionBillDate) {
+                                   String subscriptionBillDate,
+                                   String subscriptionNotes) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -69,7 +70,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(PAYMENT_COL, subscriptionPrice);
         values.put(RECURRENCE_COL, subscriptionRecurrence);
         values.put(BILLING_COL, subscriptionBillDate);
-//        values.put(NOTES_COL, subscriptionNotes);
+        values.put(NOTES_COL, subscriptionNotes);
 
         db.update(TABLE_NAME, values, "name=?", new String[]{originalSubName});
         db.close();
@@ -78,7 +79,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Subscription> readSubscriptions() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY billingTime", null);
         Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         ArrayList<Subscription> subscriptionsArrayList = new ArrayList<>();
 

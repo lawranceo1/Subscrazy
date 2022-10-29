@@ -82,8 +82,11 @@ tools:context=".ThirdFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
-        android:textColor="@color/white"
-        android:text="@string/delete" />
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:enabled="false"
+        android:text="@string/delete"
+        android:textColor="@color/white" />
 
 
 </LinearLayout>

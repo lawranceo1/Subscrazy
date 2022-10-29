@@ -1,7 +1,7 @@
 package com.example.subscrazy;
 
-import android.app.Activity;
 import android.content.Context;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +10,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAdapter.ViewHolder> {
+
+    //can be the key for searching
+    public static String subname;
+    public static String subpayment;
+    public static String subrecurrence;
+    public static String subbillingTime;
+    public static String subnotes;
 
     private ArrayList<Subscription> subscriptionArrayList;
     private Context context;
@@ -36,6 +41,7 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subscription_rv_item,
                 parent,
                 false);
+
         return new ViewHolder(view);
     }
 
@@ -52,14 +58,31 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
 
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("name", sub.getName());
+              //  Intent intent =new Intent(view.getContext(), ThirdFragment.class);
+             //   Bundle bundle = new Bundle();
+              //  bundle.putString("name", sub.getName());
+             //   intent.putExtras(bundle);
+             /*
                 bundle.putString("price", sub.getPayment());
                 bundle.putString("recurrence", sub.getRecurrence());
                 bundle.putString("billDate", sub.getBillingTime());
                 bundle.putString("notes", sub.getNotes());
+                */
 
-                fragment.setArguments(bundle);
+
+
+                Bundle bundle = new Bundle();
+                Fragment frag = new SecondFragment();
+                bundle.putString("name",sub.getName());
+                frag.setArguments(bundle);
+
+                subname = sub.getName();
+                subpayment = sub.getPayment();
+                subrecurrence = sub.getRecurrence();
+                subbillingTime = sub.getBillingTime();
+                subnotes = sub.getNotes();
+
+              //  fragment.setArguments(bundle);
                 NavHostFragment.findNavController(fragment)
                         .navigate(R.id.action_FirstFragment_to_ThirdFragment);
             }

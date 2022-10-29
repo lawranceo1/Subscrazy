@@ -1,6 +1,5 @@
 package com.example.subscrazy;
 
-import java.util.Date;
 
 public class Subscription {
     String name;

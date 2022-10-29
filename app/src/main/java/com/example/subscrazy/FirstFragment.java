@@ -45,7 +45,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       textView_for_total = getView().findViewById(R.id.totalPrice);
+        textView_for_total = getView().findViewById(R.id.totalPrice);
         sortMenu = getView().findViewById(R.id.spinner_sort);
         sortMenu.setOnItemSelectedListener(this);
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +72,8 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         dbHandler = new DBHandler(this.getContext());
 
         subscriptionArrayList = dbHandler.readSubscriptions();
-        textView_for_total.setText(""+dbHandler.getTotalSpending());
+        //textView_for_total.setText(""+dbHandler.getTotalSpending());
+        textView_for_total.setText("$"+ Math.round(dbHandler.getTotalSpending() * 100.0) / 100.0);
         subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList, this.getContext(), this);
         subscriptionRV = view.findViewById(R.id.idRVSubscriptions);
 

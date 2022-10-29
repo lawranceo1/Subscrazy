@@ -2,6 +2,7 @@ package com.example.subscrazy;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.subscrazy.databinding.FragmentSecondBinding;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -28,10 +30,9 @@ public class ThirdFragment extends Fragment {
     private EditText subNameEdt, priceEdt, dateEdt;
     private Spinner recurrenceSpinner;
     private Button deleteBtn;
-
     private DBHandler dbHandler;
     private FragmentSecondBinding binding;
-    private Bundle subInfo;
+  //  private Bundle subInfo;
 
     @Override
     public View onCreateView(
@@ -39,13 +40,17 @@ public class ThirdFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
-        subInfo = getArguments();
+      //  subInfo = getArguments();
+
+
 
         return binding.getRoot();
 
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+
+
 
         super.onViewCreated(view, savedInstanceState);
         Context thisContext = this.getContext();
@@ -85,9 +90,10 @@ public class ThirdFragment extends Fragment {
         });
 
         // show sub info from bundle
-        subNameEdt.setText(subInfo.getString("name"));  // this is where the error starts
-        priceEdt.setText(subInfo.getString("price"));
-        dateEdt.setText(subInfo.getString("billDate"));
+        subNameEdt.setText(SubscriptionRVAdapter.subname);
+        priceEdt.setText(SubscriptionRVAdapter.subpayment);
+        dateEdt.setText(SubscriptionRVAdapter.subbillingTime);
+    //    recurrenceSpinner.;
 
         binding.buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,17 +117,16 @@ public class ThirdFragment extends Fragment {
                 priceEdt.setText("");
                 recurrenceSpinner.setAdapter(null);
                 dateEdt.setText("");
-
                 NavHostFragment.findNavController(ThirdFragment.this)
                         .navigate(R.id.action_ThirdFragment_to_FirstFragment);
             }
         });
 
-//        deleteBtn = getView().findViewById(R.id.button_delete);
-//        deleteBtn.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
+  //      deleteBtn = getView().findViewById(R.id.button_delete);
+   //     deleteBtn.setOnClickListener(new View.OnClickListener() {
+
+ //           @Override
+ //           public void onClick(View view) {
 //
 //                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
 //
@@ -132,11 +137,11 @@ public class ThirdFragment extends Fragment {
 //
 //                NavHostFragment.findNavController(ThirdFragment.this)
 //                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
-//            }
-//        });
+ //           }
+  //      });
 
-//        binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
+ //       binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
+ //           @Override
 //            public void onClick(View view) {
 //
 //

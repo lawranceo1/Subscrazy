@@ -3,7 +3,6 @@ package com.example.subscrazy;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -34,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public MainActivity getActivity(){
-        return this;
-    }
+ //   public MainActivity getActivity(){
+ //       return this;
+  //  }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -55,29 +55,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Subscription> readSubscriptions() {
-        total_price=0;
-        SQLiteDatabase db = this.getReadableDatabase();
 
-       // Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY billingTime", null);
-        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-        ArrayList<Subscription> subscriptionsArrayList = new ArrayList<>();
-
-        if (cursorSubscriptions.moveToFirst()) {
-            do {
-                total_price +=Double.parseDouble(cursorSubscriptions.getString(2));
-                subscriptionsArrayList.add(new Subscription(
-                        cursorSubscriptions.getString(1),
-                        cursorSubscriptions.getString(2),
-                        cursorSubscriptions.getString(3),
-                        cursorSubscriptions.getString(4),
-                        cursorSubscriptions.getString(5)));
-            } while (cursorSubscriptions.moveToNext());
-        }
-
-        cursorSubscriptions.close();
-        return subscriptionsArrayList;
-    }
 
     public void updateSubscription(String originalSubName,
                                    String subscriptionName,
@@ -96,6 +74,29 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update(TABLE_NAME, values, "name=?", new String[]{originalSubName});
         db.close();
     }
+
+    public ArrayList<Subscription> readSubscriptions() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY billingTime", null);
+        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        ArrayList<Subscription> subscriptionsArrayList = new ArrayList<>();
+
+        if (cursorSubscriptions.moveToFirst()) {
+            do {
+                subscriptionsArrayList.add(new Subscription(
+                        cursorSubscriptions.getString(1),
+                        cursorSubscriptions.getString(2),
+                        cursorSubscriptions.getString(3),
+                        cursorSubscriptions.getString(4),
+                        cursorSubscriptions.getString(5)));
+            } while (cursorSubscriptions.moveToNext());
+        }
+
+        cursorSubscriptions.close();
+        return subscriptionsArrayList;
+    }
+
 
     public void deleteSubscription(String subscriptionName) {
         SQLiteDatabase db = this.getWritableDatabase();

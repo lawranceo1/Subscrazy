@@ -24,12 +24,11 @@ import java.util.Calendar;
 public class SecondFragment extends Fragment {
 
     private EditText subNameEdt, priceEdt, dateEdt;
-    private Button saveBtn;
+   // private Button saveBtn;
     private DBHandler dbHandler;
 
     private FragmentSecondBinding binding;
     private Spinner recurrenceSpinner;
-
 
 
     @Override
@@ -60,28 +59,28 @@ public class SecondFragment extends Fragment {
         priceEdt = getView().findViewById(R.id.editText_price);
         dateEdt = getView().findViewById(R.id.editText_date);
         dateEdt.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View v) {
-                                           final Calendar c = Calendar.getInstance();
-                                           int mYear = c.get(Calendar.YEAR); // current year
-                                           int mMonth = c.get(Calendar.MONTH); // current month
-                                           int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-                                           // date picker dialog
-                                           DatePickerDialog datePickerDialog = new DatePickerDialog(thisContext,
-                                                   new DatePickerDialog.OnDateSetListener() {
-                                                       @Override
-                                                       public void onDateSet(DatePicker view, int year,
-                                                                             int monthOfYear, int dayOfMonth) {
-                                                           // set day of month , month and year value in the edit text
-                                                           dateEdt.setText(dayOfMonth + "/"
-                                                                   + (monthOfYear + 1) + "/" + year);
-                                                       }
-                                                   },
-                                                   mYear,
-                                                   mMonth,
-                                                   mDay);
-                                           datePickerDialog.show();
-                                       }
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR); // current year
+                int mMonth = c.get(Calendar.MONTH); // current month
+                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                // date picker dialog
+                DatePickerDialog datePickerDialog = new DatePickerDialog(thisContext,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                dateEdt.setText(dayOfMonth + "/"
+                                        + (monthOfYear + 1) + "/" + year);
+                            }
+                        },
+                        mYear,
+                        mMonth,
+                        mDay);
+                datePickerDialog.show();
+            }
         });
 
         binding.buttonSave.setOnClickListener(new View.OnClickListener() {

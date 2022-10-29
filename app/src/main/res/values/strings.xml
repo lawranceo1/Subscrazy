@@ -2,8 +2,9 @@
     <string name="app_name">Subscrazy</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Home</string>
+    <string name="second_fragment_label">Add Subscription</string>
+    <string name="third_fragment_label">Edit Subscription</string>
     <string name="calculator">Calculator</string>
     <string name="mainActivity">Main Activity</string>
     <string name="next">Next</string>

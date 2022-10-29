@@ -105,6 +105,20 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Boolean subscriptionExists(String subscriptionName) {
+        Boolean result = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT name FROM " + TABLE_NAME + " WHERE name = ?",
+                new String[]{subscriptionName});
+
+        if (c.getCount() != 0) result = true;
+        c.close();
+        db.close();
+
+        return result;
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {

@@ -109,7 +109,7 @@ public class ThirdFragment extends Fragment {
                     return;
                 }
 
-//                dbHandler.updateSubscription(subName, price, recurrence, subDate);
+                dbHandler.updateSubscription(SubscriptionRVAdapter.subname,subName, price, recurrence, subDate);
 
                 Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been updated..", Toast.LENGTH_SHORT).show();
 

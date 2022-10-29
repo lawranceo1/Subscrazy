@@ -2,7 +2,6 @@ package com.example.subscrazy;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,16 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.subscrazy.databinding.FragmentSecondBinding;
 import com.example.subscrazy.databinding.FragmentThirdBinding;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -30,10 +26,8 @@ public class ThirdFragment extends Fragment {
 
     private EditText subNameEdt, priceEdt, dateEdt;
     private Spinner recurrenceSpinner;
-    private Button deleteBtn;
     private DBHandler dbHandler;
     private FragmentThirdBinding binding;
-  //  private Bundle subInfo;
 
     @Override
     public View onCreateView(
@@ -41,9 +35,6 @@ public class ThirdFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentThirdBinding.inflate(inflater, container, false);
-      //  subInfo = getArguments();
-
-
 
         return binding.getRoot();
 
@@ -52,12 +43,12 @@ public class ThirdFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
 
-
         super.onViewCreated(view, savedInstanceState);
         Context thisContext = this.getContext();
         dbHandler = new DBHandler(thisContext);
         recurrenceSpinner = getView().findViewById(R.id.spinner_time);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(getActivity().getBaseContext(),
                 R.array.timeselectarray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recurrenceSpinner.setAdapter(adapter);
@@ -94,7 +85,7 @@ public class ThirdFragment extends Fragment {
         subNameEdt.setText(SubscriptionRVAdapter.subname);
         priceEdt.setText(SubscriptionRVAdapter.subpayment);
         dateEdt.setText(SubscriptionRVAdapter.subbillingTime);
-    //    recurrenceSpinner.;
+        // recurrenceSpinner
 
         binding.buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,16 +94,26 @@ public class ThirdFragment extends Fragment {
                 String price = priceEdt.getText().toString();
                 String recurrence = recurrenceSpinner.getSelectedItem().toString();
                 String subDate = dateEdt.getText().toString();
-                
-                
-                if (subName.isEmpty() || price.isEmpty() || recurrence.isEmpty() || subDate.isEmpty()) {
-                    Toast.makeText(ThirdFragment.this.getContext(), "Please fill all fields..", Toast.LENGTH_SHORT).show();
+
+
+                if (subName.isEmpty() ||
+                        price.isEmpty() ||
+                        recurrence.isEmpty() ||
+                        subDate.isEmpty()) {
+                    Toast.makeText(ThirdFragment.this.getContext(),
+                            "Please fill all fields..", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                dbHandler.updateSubscription(SubscriptionRVAdapter.subname,subName, price, recurrence, subDate);
+                dbHandler.updateSubscription(
+                        SubscriptionRVAdapter.subname,
+                        subName,
+                        price,
+                        recurrence,
+                        subDate);
 
-                Toast.makeText(ThirdFragment.this.getContext(), "Subscription has been updated..", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ThirdFragment.this.getContext(),
+                        "Subscription has been updated..", Toast.LENGTH_SHORT).show();
 
                 subNameEdt.setText("");
                 priceEdt.setText("");
@@ -123,24 +124,20 @@ public class ThirdFragment extends Fragment {
             }
         });
 
-//        deleteBtn = getView().findViewById(R.id.button_delete);
-//        deleteBtn.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//
-//                subNameEdt.setText("");
-//                priceEdt.setText("");
-//                recurrenceSpinner.setAdapter(null);
-//                dateEdt.setText("");
-//                dbHandler.deleteSubscription(SubscriptionRVAdapter.subname);
-//                Toast.makeText(ThirdFragment.this.getContext(),
-//                        "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
-//                NavHostFragment.findNavController(ThirdFragment.this)
-//                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
-//            }
-//        });
-
+        binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                subNameEdt.setText("");
+                priceEdt.setText("");
+                recurrenceSpinner.setAdapter(null);
+                dateEdt.setText("");
+                dbHandler.deleteSubscription(SubscriptionRVAdapter.subname);
+                Toast.makeText(ThirdFragment.this.getContext(),
+                        "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
+                NavHostFragment.findNavController(ThirdFragment.this)
+                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
+            }
+        });
 
     }
 

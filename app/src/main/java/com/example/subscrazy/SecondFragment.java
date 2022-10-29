@@ -24,18 +24,19 @@ import java.util.Calendar;
 public class SecondFragment extends Fragment {
 
     private EditText subNameEdt, priceEdt, dateEdt;
-   // private Button saveBtn;
+    private Spinner recurrenceSpinner;
+
     private DBHandler dbHandler;
 
     private FragmentSecondBinding binding;
-    private Spinner recurrenceSpinner;
+
 
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            LayoutInflater inflater,
+            ViewGroup container,
+            Bundle savedInstanceState) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
 
         return binding.getRoot();
@@ -49,7 +50,8 @@ public class SecondFragment extends Fragment {
         dbHandler = new DBHandler(thisContext);
 
         recurrenceSpinner = getView().findViewById(R.id.spinner_time);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(getActivity().getBaseContext(),
                 R.array.timeselectarray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recurrenceSpinner.setAdapter(adapter);
@@ -90,15 +92,20 @@ public class SecondFragment extends Fragment {
                 String price = priceEdt.getText().toString();
                 String recurrence = recurrenceSpinner.getSelectedItem().toString();
                 String subDate = dateEdt.getText().toString();
-                if (subName.isEmpty() || price.isEmpty() || recurrence.isEmpty() || subDate.isEmpty()) {
-                    Toast.makeText(SecondFragment.this.getContext(), "Please fill all fields..", Toast.LENGTH_SHORT).show();
+                if (subName.isEmpty() ||
+                        price.isEmpty() ||
+                        recurrence.isEmpty() ||
+                        subDate.isEmpty()) {
+                    Toast.makeText(SecondFragment.this.getContext(),
+                            "Please fill all fields..", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 Subscription sub = new Subscription(subName, price, recurrence, subDate, "");
                 dbHandler.addNewSubscription(sub);
 
-                Toast.makeText(SecondFragment.this.getContext(), "Subscription has been added..", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SecondFragment.this.getContext(),
+                        "Subscription has been added..", Toast.LENGTH_SHORT).show();
 
                 subNameEdt.setText("");
                 priceEdt.setText("");

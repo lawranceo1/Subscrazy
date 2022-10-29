@@ -83,6 +83,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if (cursorSubscriptions.moveToFirst()) {
             do {
+                total_price +=Double.parseDouble(cursorSubscriptions.getString(2));
                 subscriptionsArrayList.add(new Subscription(
                         cursorSubscriptions.getString(1),
                         cursorSubscriptions.getString(2),

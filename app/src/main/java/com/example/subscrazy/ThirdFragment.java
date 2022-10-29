@@ -122,7 +122,7 @@ public class ThirdFragment extends Fragment {
             }
         });
 
-  //      deleteBtn = getView().findViewById(R.id.button_delete);
+        deleteBtn = getView().findViewById(R.id.button_delete);
    //     deleteBtn.setOnClickListener(new View.OnClickListener() {
 
  //           @Override

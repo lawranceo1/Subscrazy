@@ -72,7 +72,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         dbHandler = new DBHandler(this.getContext());
 
         subscriptionArrayList = dbHandler.readSubscriptions();
-        //textView_for_total.setText(""+dbHandler.getTotalSpending());
+       // textView_for_total.setText(""+dbHandler.getTotalSpending());
         textView_for_total.setText("$"+ Math.round(dbHandler.getTotalSpending() * 100.0) / 100.0);
         subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList, this.getContext(), this);
         subscriptionRV = view.findViewById(R.id.idRVSubscriptions);

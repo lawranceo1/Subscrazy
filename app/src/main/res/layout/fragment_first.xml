@@ -26,8 +26,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVSubscriptions"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/button_first" />
+        android:layout_height="649dp"
+        android:layout_below="@+id/button_first"
+        android:layout_marginTop="34dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -54,15 +55,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="13dp"
         android:layout_toEndOf="@+id/spinner_sort"
-        android:text="Monthly: " />
+        android:text="Total Expense: " />
 
     <TextView
         android:id="@+id/totalPrice"
         android:layout_width="66dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/idRVSubscriptions"
-        android:layout_marginStart="11dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="13dp"
         android:layout_toStartOf="@+id/button_first"
         android:layout_toEndOf="@+id/total_text"

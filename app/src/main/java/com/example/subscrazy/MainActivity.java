@@ -33,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public MainActivity getActivity(){
-        return this;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

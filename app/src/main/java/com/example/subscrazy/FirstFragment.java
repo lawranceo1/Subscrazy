@@ -148,8 +148,8 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
                 Calendar cal1 = Calendar.getInstance(); cal1.clear();
                 Calendar cal2 = Calendar.getInstance(); cal2.clear();
 
-                cal1.set(s1.getDatePart("YEAR"), s1.getDatePart("MONTH"), s1.getDatePart("DAY"));
-                cal2.set(s2.getDatePart("YEAR"), s2.getDatePart("MONTH"), s2.getDatePart("DAY"));
+                cal1 = s1.getDate();
+                cal2 = s2.getDate();
                 return cal1.compareTo(cal2);
             }
         });

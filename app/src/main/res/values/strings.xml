@@ -29,6 +29,11 @@
         <item>Yearly</item>
     </string-array>
 
+    <string-array name ="options">
+        <item>Settings</item>
+        <item></item>
+    </string-array>
+
     <string-array name="sortMenu">
         <item>Name</item>
         <item>Price</item>

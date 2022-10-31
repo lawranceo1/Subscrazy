@@ -50,10 +50,12 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Subscription sub = subscriptionArrayList.get(position);
+        String remainingDays = "Renewing in: "+sub.getRemainingDays()+" Days";
+        String payment = "$"+sub.getPayment();
         holder.subscriptionNameTV.setText(sub.getName());
-        holder.subscriptionPriceTV.setText(sub.getPayment());
+        holder.subscriptionPriceTV.setText(payment);
         holder.subscriptionRecurrenceTV.setText(sub.getRecurrence());
-        holder.subscriptionBillingTimeTV.setText(sub.getBillingTime());
+        holder.subscriptionBillingTimeTV.setText(remainingDays);
         holder.subscriptionNotesTV.setText(sub.getNotes());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +80,7 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
         });
     }
 
+
     @Override
     public int getItemCount() {
         return subscriptionArrayList.size();
@@ -98,7 +101,6 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
             subscriptionRecurrenceTV = itemView.findViewById(R.id.idSubscriptionRecurrence);
             subscriptionBillingTimeTV = itemView.findViewById(R.id.idSubscriptionBillingTime);
             subscriptionNotesTV = itemView.findViewById(R.id.idSubscriptionNotes);
-
         }
     }
 }

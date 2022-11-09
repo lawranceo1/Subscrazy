@@ -1,7 +1,17 @@
 package com.example.subscrazy;
 
+
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +21,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceManager;
+//import androidx.preference.ListPreference;
+//import androidx.preference.Preference;
+//import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +50,10 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     private TextView expenseOption;
     private ListPreference list;
 
+    private static final int NOTIFICATION_ID = 1;
+    private static final String CHANNEL_ID = "subscrazyNotifications";
+    private NotificationManager mNotificationManager;
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -45,12 +61,17 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+        createNotificationChannel();
         return binding.getRoot();
 
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mNotificationManager = (NotificationManager) getActivity().getSystemService(Context
+                .NOTIFICATION_SERVICE);
+
         SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         String str = s.getString("options","");
         expenseOption = getView().findViewById(R.id.expense_option);
@@ -64,6 +85,8 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
+
+                createNotification("testing notification");
             }
         });
         binding.fab.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +120,6 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         subscriptionRV.setLayoutManager(linearLayoutManager);
 
         subscriptionRV.setAdapter(subscriptionRVAdapter);
-
     }
 
     @Override
@@ -165,4 +187,41 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
             }
         });
     }
+
+    private void createNotification(String msg) {
+
+        Context c = this.getContext();
+        Intent intent = new Intent(c, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(c, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(c, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("Subscrazy")
+                .setContentText(msg)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(c);
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager =
+                    this.getContext().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 }

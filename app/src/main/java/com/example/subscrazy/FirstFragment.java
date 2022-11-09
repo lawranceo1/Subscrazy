@@ -1,5 +1,6 @@
 package com.example.subscrazy;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +34,9 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     private RecyclerView subscriptionRV;
     private Spinner sortMenu;
     private FragmentFirstBinding binding;
-    private TextView textView_for_total;
+    private TextView showExpense;
+    private TextView expenseOption;
+    private ListPreference list;
 
     @Override
     public View onCreateView(
@@ -45,7 +51,12 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textView_for_total = getView().findViewById(R.id.totalPrice);
+        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this.getContext());
+        String str = s.getString("options","");
+        expenseOption = getView().findViewById(R.id.expense_option);
+        System.out.println("Selected list = "+str);
+        expenseOption.setText(str);
+        showExpense = getView().findViewById(R.id.showExpense);
         sortMenu = getView().findViewById(R.id.spinner_sort);
         sortMenu.setOnItemSelectedListener(this);
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +85,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
         subscriptionArrayList = dbHandler.readSubscriptions();
        // textView_for_total.setText(""+dbHandler.getTotalSpending());
-        textView_for_total.setText("$"+ Math.round(dbHandler.getTotalSpending() * 100.0) / 100.0);
+        showExpense.setText("$"+ Math.round(dbHandler.getTotalSpending() * 100.0) / 100.0);
         subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList,
                 this.getContext(),
                 this);

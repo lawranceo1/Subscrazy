@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -108,7 +110,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
         subscriptionArrayList = dbHandler.readSubscriptions();
        // textView_for_total.setText(""+dbHandler.getTotalSpending());
-        showExpense.setText("$"+ Math.round(dbHandler.getTotalSpending() * 100.0) / 100.0);
+        showExpense.setText("$"+ Math.round(dbHandler.getRemainingExpense()* 100.0) / 100.0);
         subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList,
                 this.getContext(),
                 this);
@@ -187,8 +189,21 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
             }
         });
     }
+    public double getRemainingBudget(double budget, double totalExpense){
+        double remainingBudget = budget-totalExpense;
+        if(remainingBudget < 0)
+            remainingBudget=0;
+        return remainingBudget;
+    }
 
-    private void createNotification(String msg) {
+//   remainingBudget public double showExpenseTextValue(String option, DBHandler db){
+//        if(option.compareTo("Remaining Budget")){
+//            return getRemainingBudget();
+//        }
+//
+//    }
+
+private void createNotification(String msg) {
 
         Context c = this.getContext();
         Intent intent = new Intent(c, MainActivity.class);

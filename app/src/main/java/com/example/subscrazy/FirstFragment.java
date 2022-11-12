@@ -1,5 +1,6 @@
 package com.example.subscrazy;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -49,6 +50,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this.getContext());
@@ -85,7 +87,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
         subscriptionArrayList = dbHandler.readSubscriptions();
        // textView_for_total.setText(""+dbHandler.getTotalSpending());
-        showExpense.setText("$"+ Math.round(dbHandler.getTotalSpending() * 100.0) / 100.0);
+        showExpense.setText("$"+ Math.round(dbHandler.getRemainingExpense()* 100.0) / 100.0);
         subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList,
                 this.getContext(),
                 this);
@@ -165,4 +167,19 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
             }
         });
     }
+
+    public double getRemainingBudget(double budget, double totalExpense){
+        double remainingBudget = budget-totalExpense;
+        if(remainingBudget < 0)
+            remainingBudget=0;
+        return remainingBudget;
+    }
+
+//   remainingBudget public double showExpenseTextValue(String option, DBHandler db){
+//        if(option.compareTo("Remaining Budget")){
+//            return getRemainingBudget();
+//        }
+//
+//    }
+//
 }

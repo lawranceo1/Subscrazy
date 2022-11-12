@@ -103,4 +103,12 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
             subscriptionNotesTV = itemView.findViewById(R.id.idSubscriptionNotes);
         }
     }
+
+
+    public double getRemainingExpense(){
+        double result = 0;
+
+
+        return result;
+    }
 }

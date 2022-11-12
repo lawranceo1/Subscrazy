@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -23,6 +24,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String BILLING_COL = "billingTime";
     private static final String NOTES_COL = "notes";
     private double total_price;
+    private double remainingExpense;
+    private double remainingBudget;
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -32,13 +35,15 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NAME_COL + " TEXT,"
-                + PAYMENT_COL + " DATE,"
-                + RECURRENCE_COL + " MONEY,"
+                + PAYMENT_COL + " TEXT,"
+                + RECURRENCE_COL + " TEXT,"
                 + BILLING_COL + " TEXT,"
                 + NOTES_COL + " TEXT)";
 
         sqLiteDatabase.execSQL(query);
         total_price=0;
+        remainingExpense=0;
+        remainingBudget=0;
     }
 
     public void addNewSubscription(Subscription s) {
@@ -84,12 +89,15 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursorSubscriptions.moveToFirst()) {
             do {
                 total_price +=Double.parseDouble(cursorSubscriptions.getString(2));
+                if(isPending(cursorSubscriptions.getString(4))){
+                    remainingExpense += Double.parseDouble(cursorSubscriptions.getString(2));
+                }
                 subscriptionsArrayList.add(new Subscription(
-                        cursorSubscriptions.getString(1),
-                        cursorSubscriptions.getString(2),
-                        cursorSubscriptions.getString(3),
-                        cursorSubscriptions.getString(4),
-                        cursorSubscriptions.getString(5)));
+                        cursorSubscriptions.getString(1), //name
+                        cursorSubscriptions.getString(2),//payment
+                        cursorSubscriptions.getString(3),//monthly/yearly
+                        cursorSubscriptions.getString(4),//date
+                        cursorSubscriptions.getString(5)));//notes
             } while (cursorSubscriptions.moveToNext());
         }
 
@@ -129,5 +137,21 @@ public class DBHandler extends SQLiteOpenHelper {
     public double getTotalSpending() {
         return this.total_price;
     }
+
+    public boolean isPending(String date){
+        String []dateParts = date.split("/");
+        int dayOfMonth = Integer.parseInt(dateParts[0]);
+        Calendar c = Calendar.getInstance();
+        //String currentDate = c.get(Calendar.DAY_OF_MONTH)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.YEAR);
+        if(dayOfMonth>c.get(Calendar.DAY_OF_MONTH))
+            return true;
+        return false;
+    }
+
+    public double getRemainingExpense(){
+        return remainingExpense;
+    }
+
+
 }
 

@@ -75,7 +75,7 @@ public class Subscription {
     }
 
     public int getRemainingDays() {
-        Calendar cal = getDate();
+/*        Calendar cal = getDate();
         Calendar feb = Calendar.getInstance();
         feb.set(Calendar.MONTH, Calendar.FEBRUARY);
         Calendar tmp = Calendar.getInstance();
@@ -86,12 +86,13 @@ public class Subscription {
             System.out.println("Days = "+days);
 
             tmp.add(Calendar.MONTH, 1);
-            if(cal.get(Calendar.DAY_OF_MONTH) > tmp.getActualMaximum(Calendar.DAY_OF_MONTH)){
+            if(cal.get(Calendar.DAY_OF_MONTH) >= tmp.getActualMaximum(Calendar.DAY_OF_MONTH)){
                 tmp.set(Calendar.DAY_OF_MONTH, tmp.getActualMaximum(Calendar.DAY_OF_MONTH));
             }else{
                 tmp.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) );
             }
             days += tmp.get(Calendar.DAY_OF_MONTH);
+
             return days;
         } else {
             if (cal.get(Calendar.MONTH) == Calendar.JANUARY && tmp.get(Calendar.MONTH) == Calendar.FEBRUARY && cal.get(Calendar.DAY_OF_MONTH) > feb.getActualMaximum(Calendar.DAY_OF_MONTH)) {
@@ -103,6 +104,22 @@ public class Subscription {
 
             return cal.get(Calendar.DAY_OF_MONTH) - tmp.get(Calendar.DAY_OF_MONTH);
         }
-
+ */
+        int days = 0;
+        Calendar cal = getDate();
+        Calendar tmp = Calendar.getInstance();
+        int today = tmp.get(Calendar.DATE);
+        int billday = cal.get(Calendar.DATE);
+        int monthdays = tmp.getActualMaximum(Calendar.DAY_OF_MONTH);
+        int diff = billday - today;
+        if(diff >=0 ){
+            days = diff;
+        }
+        else{
+            days = monthdays - today + billday;
+        }
+        return days;
     }
+
+
 }

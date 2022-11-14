@@ -45,7 +45,8 @@
         android:foreground="@drawable/calc"
         android:src="@android:drawable/alert_dark_frame"
         app:backgroundTint="#F8F0F0"
-        app:fabSize="mini" />
+        app:fabSize="mini"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/expense_option"

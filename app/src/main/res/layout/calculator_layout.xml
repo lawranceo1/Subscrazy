@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -80,7 +79,8 @@
                 android:backgroundTint="@color/black"
                 android:text="C"
                 android:textColor="@color/red"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/bracket"
@@ -91,7 +91,8 @@
                 android:backgroundTint="@color/black"
                 android:text="()"
                 android:textColor="@color/orange"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/power"
@@ -102,7 +103,8 @@
                 android:backgroundTint="@color/black"
                 android:text="^"
                 android:textColor="@color/orange"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/divide"
@@ -113,7 +115,8 @@
                 android:backgroundTint="@color/black"
                 android:text="/"
                 android:textColor="@color/orange"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 
@@ -131,7 +134,8 @@
                 android:backgroundTint="@color/black"
                 android:text="7"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/eight"
@@ -142,7 +146,8 @@
                 android:backgroundTint="@color/black"
                 android:text="8"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/nine"
@@ -153,7 +158,8 @@
                 android:backgroundTint="@color/black"
                 android:text="9"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/multiply"
@@ -164,7 +170,8 @@
                 android:backgroundTint="@color/black"
                 android:text="X"
                 android:textColor="@color/orange"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 
@@ -183,7 +190,8 @@
                 android:backgroundTint="@color/black"
                 android:text="4"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/five"
@@ -194,7 +202,8 @@
                 android:backgroundTint="@color/black"
                 android:text="5"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/six"
@@ -205,7 +214,8 @@
                 android:backgroundTint="@color/black"
                 android:text="6"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/minus"
@@ -216,7 +226,8 @@
                 android:backgroundTint="@color/black"
                 android:text="-"
                 android:textColor="@color/orange"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 
@@ -234,7 +245,8 @@
                 android:backgroundTint="@color/black"
                 android:text="1"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/two"
@@ -245,7 +257,8 @@
                 android:backgroundTint="@color/black"
                 android:text="2"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/three"
@@ -256,7 +269,8 @@
                 android:backgroundTint="@color/black"
                 android:text="3"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/plus"
@@ -267,7 +281,8 @@
                 android:backgroundTint="@color/black"
                 android:text="+"
                 android:textColor="@color/orange"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 
@@ -285,7 +300,8 @@
                 android:backgroundTint="@color/black"
                 android:text="."
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/zero"
@@ -296,7 +312,8 @@
                 android:backgroundTint="@color/black"
                 android:text="0"
                 android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize" />
+                android:textSize="@dimen/calcButtonTextSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
 
             <Button
@@ -308,7 +325,8 @@
                 android:backgroundTint="@color/orange"
                 android:text="="
                 android:textColor="@color/white"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 

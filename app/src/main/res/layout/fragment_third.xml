@@ -69,7 +69,8 @@ tools:context=".ThirdFragment">
         android:hint="@string/select_date"
         android:inputType="date"
         android:textStyle="bold"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/button_save"

@@ -68,7 +68,9 @@
         android:hint="@string/select_date"
         android:textStyle="bold"
         android:focusable="false"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:inputType="date"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/button_save"

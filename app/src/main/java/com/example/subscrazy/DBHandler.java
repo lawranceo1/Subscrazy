@@ -24,7 +24,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String RECURRENCE_COL = "recurrence";
     private static final String BILLING_COL = "billingTime";
     private static final String NOTES_COL = "notes";
-    private double total_price;
+    private double total_expense;
         private double remainingExpense;
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -41,7 +41,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + NOTES_COL + " TEXT)";
 
         sqLiteDatabase.execSQL(query);
-        total_price=0;
+        total_expense =0;
         remainingExpense=0;
     }
 
@@ -87,8 +87,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if (cursorSubscriptions.moveToFirst()) {
             do {
-                total_price +=Double.parseDouble(cursorSubscriptions.getString(2));
-                if(isPending(cursorSubscriptions.getString(4))){
+                if(cursorSubscriptions.getString(3).compareTo("Monthly")==0) {
+                    total_expense += Double.parseDouble(cursorSubscriptions.getString(2));
+                }
+                if(isPending(cursorSubscriptions.getString(4)) && (cursorSubscriptions.getString(3).compareTo("Monthly") == 0)){
                     remainingExpense += Double.parseDouble(cursorSubscriptions.getString(2));
                 }
                 subscriptionsArrayList.add(new Subscription(
@@ -134,7 +136,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public double getTotalSpending() {
-        return this.total_price;
+        return this.total_expense;
     }
 
     public boolean isPending(String date){

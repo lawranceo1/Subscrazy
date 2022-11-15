@@ -3,7 +3,6 @@
     <string-array name="options">
         <item>Total Expense</item>
         <item>Remaining Expense</item>
-        <item>Remaining Expense</item>
         <item>Remaining Budget</item>
     </string-array>
 

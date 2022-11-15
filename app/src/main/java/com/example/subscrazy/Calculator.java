@@ -20,6 +20,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+@SuppressWarnings("ALL")
 public class Calculator  extends Fragment
 {
 
@@ -32,7 +33,7 @@ public class Calculator  extends Fragment
     private CalculatorLayoutBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
@@ -45,108 +46,25 @@ public class Calculator  extends Fragment
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initTextViews();
-        binding.c.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clearOnClick(view);
-            }
-        });
-        binding.one.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                oneOnClick(view);
-            }
-        });
-        binding.two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                twoOnClick(view);
-            }
-        }); binding.three.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                threeOnClick(view);
-            }
-        }); binding.four.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fourOnClick(view);
-            }
-        }); binding.five.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               fiveOnClick(view);
-            }
-        }); binding.six.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sixOnClick(view);
-            }
-        }); binding.seven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sevenOnClick(view);
-            }
-        }); binding.eight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                eightOnClick(view);
-            }
-        }); binding.nine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               nineOnClick(view);
-            }
-        }); binding.zero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               zeroOnClick(view);
-            }
-        }); binding.multiply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                timesOnClick(view);
-            }
-        }); binding.divide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                divisionOnClick(view);
-            }
-        }); binding.plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               plusOnClick(view);
-            }
-        }); binding.minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               minusOnClick(view);
-            }
-        });binding.equals.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                equalsOnClick(view);
-            }
-        });binding.power.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              powerOfOnClick(view);
-            }
-        });binding.bracket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bracketsOnClick(view);
-            }
-        });
+        binding.c.setOnClickListener(view119 -> clearOnClick(view119));
+        binding.one.setOnClickListener(view118 -> oneOnClick(view118));
+        binding.two.setOnClickListener(view117 -> twoOnClick(view117));
+        binding.three.setOnClickListener(view116 -> threeOnClick(view116));
+        binding.four.setOnClickListener(view115 -> fourOnClick(view115));
+        binding.five.setOnClickListener(view114 -> fiveOnClick(view114));
+        binding.six.setOnClickListener(view113 -> sixOnClick(view113));
+        binding.seven.setOnClickListener(view112 -> sevenOnClick(view112));
+        binding.eight.setOnClickListener(view111 -> eightOnClick(view111));
+        binding.nine.setOnClickListener(view110 -> nineOnClick(view110));
+        binding.zero.setOnClickListener(view19 -> zeroOnClick(view19));
+        binding.multiply.setOnClickListener(view18 -> timesOnClick(view18));
+        binding.divide.setOnClickListener(view17 -> divisionOnClick(view17));
+        binding.plus.setOnClickListener(view16 -> plusOnClick(view16));
 
-        binding.exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(Calculator.this)
-                        .navigate(R.id.action_Calculator_to_FirstFragment);
-            }
-        });
-
+        binding.minus.setOnClickListener(view15 -> minusOnClick(view15));
+        binding.equals.setOnClickListener(view14 -> equalsOnClick(view14));
+        binding.power.setOnClickListener(view13 -> powerOfOnClick(view13));
+        binding.brackets.setOnClickListener(view12 -> bracketsOnClick(view12));
     }
 
     private void initTextViews()
@@ -230,10 +148,7 @@ public class Calculator  extends Fragment
 
     private boolean isNumeric(char c)
     {
-        if((c <= '9' && c >= '0') || c == '.')
-            return true;
-
-        return false;
+        return (c <= '9' && c >= '0') || c == '.';
     }
 
 

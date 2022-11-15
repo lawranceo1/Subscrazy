@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAdapter.ViewHolder> {
 
     //can be the key for searching
@@ -25,9 +26,9 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
     public static String subbillingTime;
     public static String subnotes;
 
-    private ArrayList<Subscription> subscriptionArrayList;
-    private Context context;
-    private Fragment fragment;
+    private final ArrayList<Subscription> subscriptionArrayList;
+    private final Context context;
+    private final Fragment fragment;
 
     public SubscriptionRVAdapter(ArrayList<Subscription> subscriptionArrayList,
                                  Context context,
@@ -58,25 +59,21 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
         holder.subscriptionBillingTimeTV.setText(remainingDays);
         holder.subscriptionNotesTV.setText(sub.getNotes());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(view -> {
 
-            @Override
-            public void onClick(View view) {
+            Bundle bundle = new Bundle();
+            Fragment frag = new SecondFragment();
+            bundle.putString("name",sub.getName());
+            frag.setArguments(bundle);
 
-                Bundle bundle = new Bundle();
-                Fragment frag = new SecondFragment();
-                bundle.putString("name",sub.getName());
-                frag.setArguments(bundle);
+            subname = sub.getName();
+            subpayment = sub.getPayment();
+            subrecurrence = sub.getRecurrence();
+            subbillingTime = sub.getBillingTime();
+            subnotes = sub.getNotes();
 
-                subname = sub.getName();
-                subpayment = sub.getPayment();
-                subrecurrence = sub.getRecurrence();
-                subbillingTime = sub.getBillingTime();
-                subnotes = sub.getNotes();
-
-                NavHostFragment.findNavController(fragment)
-                        .navigate(R.id.action_FirstFragment_to_ThirdFragment);
-            }
+            NavHostFragment.findNavController(fragment)
+                    .navigate(R.id.action_FirstFragment_to_ThirdFragment);
         });
     }
 
@@ -86,7 +83,8 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
         return subscriptionArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    @SuppressWarnings("unused")
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView subscriptionNameTV,
                 subscriptionPriceTV,

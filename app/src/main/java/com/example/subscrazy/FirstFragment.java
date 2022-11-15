@@ -2,6 +2,7 @@ package com.example.subscrazy;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,17 +26,13 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class FirstFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+@SuppressWarnings("unused")
+public class FirstFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private ArrayList<Subscription> subscriptionArrayList;
     private DBHandler dbHandler;
     private SubscriptionRVAdapter subscriptionRVAdapter;
-    private RecyclerView subscriptionRV;
-    private Spinner sortMenu;
     private FragmentFirstBinding binding;
-    private TextView showExpense;
-    private TextView expenseOption;
-    private ListPreference list;
 
     @Override
     public View onCreateView(
@@ -50,73 +45,32 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     }
 
-    @SuppressLint("SetTextI18n")
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this.getContext());
-        String str = s.getString("options","");
-        expenseOption = getView().findViewById(R.id.expense_option);
-        System.out.println("Selected list = "+str);
-        expenseOption.setText(str);
-        showExpense = getView().findViewById(R.id.showExpense);
-        sortMenu = getView().findViewById(R.id.spinner_sort);
-        sortMenu.setOnItemSelectedListener(this);
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_Calculator);
-            }
-         });
-
-        ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(getActivity().getBaseContext(),
-                R.array.sortMenu, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sortMenu.setAdapter(adapter);
-
         subscriptionArrayList = new ArrayList<>();
         dbHandler = new DBHandler(this.getContext());
-
         subscriptionArrayList = dbHandler.readSubscriptions();
-       // textView_for_total.setText(""+dbHandler.getTotalSpending());
-        showExpense.setText("$"+ Math.round(dbHandler.getRemainingExpense()* 100.0) / 100.0);
-        subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList,
-                this.getContext(),
-                this);
-        subscriptionRV = view.findViewById(R.id.idRVSubscriptions);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(),
-                RecyclerView.VERTICAL,
-                false);
-        subscriptionRV.setLayoutManager(linearLayoutManager);
-
-        subscriptionRV.setAdapter(subscriptionRVAdapter);
-
+        addListeners();
+        showSelectedExpense();
+        setSortMenu();
+        setRVAdapter(view);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-       System.out.println("i = "+i);
-        if(i == 0){ //selected name from drop down list
+        if (i == 0) { //selected name from drop down list
             sort_with_Name(subscriptionArrayList);
-        }else if(i==1){ //price
+        } else if (i == 1) { //price
             sort_with_price(subscriptionArrayList);
-        }else if (i==2){ //Date
+        } else if (i == 2) { //Date
             sort_with_Date(subscriptionArrayList);
         }
         subscriptionRVAdapter.notifyDataSetChanged();
     }
 
 
-
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
         sort_with_Name(subscriptionArrayList);
@@ -129,57 +83,92 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         binding = null;
     }
 
-    public void sort_with_price(ArrayList<Subscription> s ) {
-        Collections.sort(s, new Comparator<Subscription>() {
-            public int compare(Subscription s1, Subscription s2) {
-                int comp;
-                if (Double.parseDouble(s1.getPayment()) < Double.parseDouble(s2.getPayment())) {
-                    comp = -1;
-                } else if (Double.parseDouble(s1.getPayment()) ==
-                        Double.parseDouble(s2.getPayment())) {
-                    comp = 0;
-                } else {
-                    comp = 1;
-                }
-                return comp;
-            }
+
+    public void setRVAdapter(View view){
+        subscriptionRVAdapter = new SubscriptionRVAdapter(subscriptionArrayList,
+                this.getContext(),
+                this);
+        RecyclerView subscriptionRV = view.findViewById(R.id.idRVSubscriptions);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(),
+                RecyclerView.VERTICAL,
+                false);
+        subscriptionRV.setLayoutManager(linearLayoutManager);
+
+        subscriptionRV.setAdapter(subscriptionRVAdapter);
+    }
+
+    public void addListeners(){
+        binding.buttonFirst.setOnClickListener(view1 -> NavHostFragment.findNavController(FirstFragment.this)
+                .navigate(R.id.action_FirstFragment_to_SecondFragment));
+        binding.fab.setOnClickListener(view12 -> NavHostFragment.findNavController(FirstFragment.this)
+                .navigate(R.id.action_FirstFragment_to_Calculator));
+
+    }
+
+    public void setSortMenu(){
+        Spinner sortMenu = requireView().findViewById(R.id.spinner_sort);
+        sortMenu.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(requireActivity().getBaseContext(),
+                        R.array.sortMenu, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortMenu.setAdapter(adapter);
+    }
+
+    public void sort_with_price(ArrayList<Subscription> s) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Collections.sort(s, Comparator.comparingDouble(s2 -> Double.parseDouble(s2.getPayment())));
+        }
+    }
+
+    public void sort_with_Name(ArrayList<Subscription> s) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Collections.sort(s, Comparator.comparing(Subscription::getName));
+        }
+    }
+
+
+    public void sort_with_Date(ArrayList<Subscription> s) {
+        Collections.sort(s, (s1, s2) -> {
+            Calendar cal1 = Calendar.getInstance();
+            cal1.clear();
+            Calendar cal2 = Calendar.getInstance();
+            cal2.clear();
+
+            cal1 = s1.getDate();
+            cal2 = s2.getDate();
+            return cal1.compareTo(cal2);
         });
     }
 
-    public void sort_with_Name(ArrayList<Subscription> s ) {
-        Collections.sort(s, new Comparator<Subscription>() {
-            public int compare(Subscription s1, Subscription s2) {
-                return s1.getName().compareTo(s2.getName());
-            }
-        });
-    }
-
-
-    public void sort_with_Date(ArrayList<Subscription> s ) {
-        Collections.sort(s, new Comparator<Subscription>() {
-            public int compare(Subscription s1, Subscription s2) {
-                Calendar cal1 = Calendar.getInstance(); cal1.clear();
-                Calendar cal2 = Calendar.getInstance(); cal2.clear();
-
-                cal1 = s1.getDate();
-                cal2 = s2.getDate();
-                return cal1.compareTo(cal2);
-            }
-        });
-    }
-
-    public double getRemainingBudget(double budget, double totalExpense){
-        double remainingBudget = budget-totalExpense;
-        if(remainingBudget < 0)
-            remainingBudget=0;
+    @SuppressWarnings("unused")
+    public double getRemainingBudget(double budget, double totalExpense) {
+        double remainingBudget = budget - totalExpense;
+        if (remainingBudget < 0)
+            remainingBudget = 0;
         return remainingBudget;
     }
 
-//   remainingBudget public double showExpenseTextValue(String option, DBHandler db){
-//        if(option.compareTo("Remaining Budget")){
-//            return getRemainingBudget();
-//        }
-//
-//    }
-//
+    public void showSelectedExpense() {
+        TextView showExpense = requireView().findViewById(R.id.showExpense);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this.requireContext());
+        String option = pref.getString("options", "Total Expense");
+        TextView expenseOption = requireView().findViewById(R.id.expense_option);
+        expenseOption.setText(option);
+        String output = "$";
+        switch (option) {
+            case "Remaining Budget":
+                double budget = Double.parseDouble(pref.getString("budget", "0.0"));
+                output += getRemainingBudget(budget, dbHandler.getTotalSpending());
+                break;
+            case "Remaining Expense":
+                output+= dbHandler.getRemainingExpense();
+                break;
+            default:
+                output +=dbHandler.getTotalSpending();
+        }
+        showExpense.setText(output);
+    }
 }

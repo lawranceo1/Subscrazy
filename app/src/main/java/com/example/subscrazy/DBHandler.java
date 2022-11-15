@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+@SuppressWarnings("unused")
 public class DBHandler extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "subscrazydb";
@@ -24,8 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String BILLING_COL = "billingTime";
     private static final String NOTES_COL = "notes";
     private double total_price;
-    private double remainingExpense;
-    private double remainingBudget;
+        private double remainingExpense;
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -43,7 +43,6 @@ public class DBHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(query);
         total_price=0;
         remainingExpense=0;
-        remainingBudget=0;
     }
 
     public void addNewSubscription(Subscription s) {
@@ -142,10 +141,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String []dateParts = date.split("/");
         int dayOfMonth = Integer.parseInt(dateParts[0]);
         Calendar c = Calendar.getInstance();
-        //String currentDate = c.get(Calendar.DAY_OF_MONTH)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.YEAR);
-        if(dayOfMonth>c.get(Calendar.DAY_OF_MONTH))
-            return true;
-        return false;
+        return dayOfMonth > c.get(Calendar.DAY_OF_MONTH);
     }
 
     public double getRemainingExpense(){

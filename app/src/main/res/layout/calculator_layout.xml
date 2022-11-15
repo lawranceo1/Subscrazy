@@ -10,25 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:background="@color/white"
-        android:backgroundTint="@color/black">
-
-        <Button
-            android:id="@+id/exitButton"
-            android:layout_width="427dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:background="@null"
-            android:backgroundTint="@color/orange"
-            android:gravity="center_vertical"
-            android:text="Done" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:layout_weight="2.5"
         android:orientation="vertical">
 
@@ -80,10 +61,11 @@
                 android:text="C"
                 android:textColor="@color/red"
                 android:textSize="@dimen/calcButtonTextSize"
-                style="?android:attr/buttonBarButtonStyle" />
+                style="?android:attr/buttonBarButtonStyle"
+                tools:ignore="ButtonStyle" />
 
             <Button
-                android:id="@+id/bracket"
+                android:id="@+id/brackets"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

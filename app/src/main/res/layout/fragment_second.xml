@@ -8,7 +8,6 @@
     tools:context=".SecondFragment">
 
     <TextView
-        android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -26,7 +25,6 @@
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/text_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -42,7 +40,6 @@
         android:inputType="numberDecimal" />
 
     <TextView
-        android:id="@+id/text_Cycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -55,7 +52,6 @@
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/text_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"

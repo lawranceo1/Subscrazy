@@ -3,8 +3,9 @@
     <PreferenceCategory app:title="Settings">
 
         <EditTextPreference
-            app:key="signature"
+            app:key="budget"
             app:title="Set Budget(Month)"
+            app:defaultValue="0.0"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
@@ -12,7 +13,7 @@
             app:entryValues="@array/options"
             app:key="options"
             app:title="Expense Options(Month)"
-            app:defaultValue="Remaining Budget"
+            app:defaultValue="Total Expense"
             app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>

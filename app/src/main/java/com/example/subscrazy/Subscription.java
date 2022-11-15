@@ -3,6 +3,7 @@ package com.example.subscrazy;
 
 import java.util.Calendar;
 
+@SuppressWarnings("unused")
 public class Subscription {
     String name;
     String payment;

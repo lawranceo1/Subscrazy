@@ -22,6 +22,7 @@ import com.example.subscrazy.databinding.FragmentThirdBinding;
 import java.util.Calendar;
 
 
+@SuppressWarnings("unused")
 public class ThirdFragment extends Fragment {
 
     private EditText subNameEdt, priceEdt, dateEdt;
@@ -31,7 +32,7 @@ public class ThirdFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
         binding = FragmentThirdBinding.inflate(inflater, container, false);
@@ -56,29 +57,22 @@ public class ThirdFragment extends Fragment {
         subNameEdt = getView().findViewById(R.id.editText_name);
         priceEdt = getView().findViewById(R.id.editText_price);
         dateEdt = getView().findViewById(R.id.editText_date);
-        dateEdt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-                // date picker dialog
-                DatePickerDialog datePickerDialog = new DatePickerDialog(thisContext,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
-                                dateEdt.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
-                            }
-                        },
-                        mYear,
-                        mMonth,
-                        mDay);
-                datePickerDialog.show();
-            }
+        dateEdt.setOnClickListener(v -> {
+            final Calendar c = Calendar.getInstance();
+            int mYear = c.get(Calendar.YEAR); // current year
+            int mMonth = c.get(Calendar.MONTH); // current month
+            int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+            // date picker dialog
+            DatePickerDialog datePickerDialog = new DatePickerDialog(thisContext,
+                    (view13, year, monthOfYear, dayOfMonth) -> {
+                        // set day of month , month and year value in the edit text
+                        dateEdt.setText(dayOfMonth + "/"
+                                + (monthOfYear + 1) + "/" + year);
+                    },
+                    mYear,
+                    mMonth,
+                    mDay);
+            datePickerDialog.show();
         });
 
         // show sub info from bundle
@@ -87,56 +81,50 @@ public class ThirdFragment extends Fragment {
         dateEdt.setText(SubscriptionRVAdapter.subbillingTime);
         // recurrenceSpinner
 
-        binding.buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String subName = subNameEdt.getText().toString();
-                String price = priceEdt.getText().toString();
-                String recurrence = recurrenceSpinner.getSelectedItem().toString();
-                String subDate = dateEdt.getText().toString();
+        binding.buttonSave.setOnClickListener(view12 -> {
+            String subName = subNameEdt.getText().toString();
+            String price = priceEdt.getText().toString();
+            String recurrence = recurrenceSpinner.getSelectedItem().toString();
+            String subDate = dateEdt.getText().toString();
 
 
-                if (subName.isEmpty() ||
-                        price.isEmpty() ||
-                        recurrence.isEmpty() ||
-                        subDate.isEmpty()) {
-                    Toast.makeText(ThirdFragment.this.getContext(),
-                            "Please fill all fields..", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                dbHandler.updateSubscription(
-                        SubscriptionRVAdapter.subname,
-                        subName,
-                        price,
-                        recurrence,
-                        subDate);
-
+            if (subName.isEmpty() ||
+                    price.isEmpty() ||
+                    recurrence.isEmpty() ||
+                    subDate.isEmpty()) {
                 Toast.makeText(ThirdFragment.this.getContext(),
-                        "Subscription has been updated..", Toast.LENGTH_SHORT).show();
-
-                subNameEdt.setText("");
-                priceEdt.setText("");
-                recurrenceSpinner.setAdapter(null);
-                dateEdt.setText("");
-                NavHostFragment.findNavController(ThirdFragment.this)
-                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
+                        "Please fill all fields..", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            dbHandler.updateSubscription(
+                    SubscriptionRVAdapter.subname,
+                    subName,
+                    price,
+                    recurrence,
+                    subDate);
+
+            Toast.makeText(ThirdFragment.this.getContext(),
+                    "Subscription has been updated..", Toast.LENGTH_SHORT).show();
+
+            subNameEdt.setText("");
+            priceEdt.setText("");
+            recurrenceSpinner.setAdapter(null);
+            dateEdt.setText("");
+            NavHostFragment.findNavController(ThirdFragment.this)
+                    .navigate(R.id.action_ThirdFragment_to_FirstFragment);
         });
 
-        binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                subNameEdt.setText("");
-                priceEdt.setText("");
-                recurrenceSpinner.setAdapter(null);
-                dateEdt.setText("");
-                dbHandler.deleteSubscription(SubscriptionRVAdapter.subname);
-                Toast.makeText(ThirdFragment.this.getContext(),
-                        "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
-                NavHostFragment.findNavController(ThirdFragment.this)
-                        .navigate(R.id.action_ThirdFragment_to_FirstFragment);
-            }
+        binding.buttonDelete.setOnClickListener(view1 -> {
+            subNameEdt.setText("");
+            priceEdt.setText("");
+            recurrenceSpinner.setAdapter(null);
+            dateEdt.setText("");
+            dbHandler.deleteSubscription(SubscriptionRVAdapter.subname);
+            Toast.makeText(ThirdFragment.this.getContext(),
+                    "Subscription has been deleted..", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(ThirdFragment.this)
+                    .navigate(R.id.action_ThirdFragment_to_FirstFragment);
         });
 
     }

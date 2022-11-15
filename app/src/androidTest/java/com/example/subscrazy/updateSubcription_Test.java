@@ -1,8 +1,5 @@
 package com.example.subscrazy;
 
-/*
-    This test checks if a subscription can be added to the database.
- */
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -10,6 +7,7 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -37,16 +35,16 @@ import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddSubscription_Test {
+public class updateSubcription_Test {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
 
-    // Test to check if the subscription is being added succesfully
+    // This Test checks if the subscription gets updated with the given values.
     @Test
-    public void addSubscription_Test() {
+    public void updateSubcription_Test() {
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.button_first), withText("Add"),
                         childAtPosition(
@@ -65,7 +63,7 @@ public class AddSubscription_Test {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("Netflix"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("SubTest"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.editText_price),
@@ -75,9 +73,29 @@ public class AddSubscription_Test {
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("11.99"), closeSoftKeyboard());
+        appCompatEditText2.perform(click());
 
         ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.editText_price),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_host_fragment_content_main),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText3.perform(click());
+
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.editText_price),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_host_fragment_content_main),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText4.perform(replaceText("5.99"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText5 = onView(
                 allOf(withId(R.id.editText_date),
                         childAtPosition(
                                 childAtPosition(
@@ -85,7 +103,7 @@ public class AddSubscription_Test {
                                         0),
                                 7),
                         isDisplayed()));
-        appCompatEditText3.perform(click());
+        appCompatEditText5.perform(click());
 
         ViewInteraction materialButton2 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -107,10 +125,53 @@ public class AddSubscription_Test {
         materialButton3.perform(click());
 
         ViewInteraction textView = onView(
-                allOf(withId(R.id.idSubscriptionName), withText("Netflix"),
+                allOf(withId(R.id.idSubscriptionPrice), withText("$5.99"),
                         withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
                         isDisplayed()));
-        textView.check(matches(withText("Netflix")));
+        textView.check(matches(withText("$5.99")));
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.idRVSubscriptions),
+                        childAtPosition(
+                                withClassName(is("android.widget.RelativeLayout")),
+                                2)));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        ViewInteraction appCompatEditText6 = onView(
+                allOf(withId(R.id.editText_price), withText("5.99"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_host_fragment_content_main),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText6.perform(replaceText("10.99"));
+
+        ViewInteraction appCompatEditText7 = onView(
+                allOf(withId(R.id.editText_price), withText("10.99"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_host_fragment_content_main),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText7.perform(closeSoftKeyboard());
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.button_save), withText("Save"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_host_fragment_content_main),
+                                        0),
+                                8),
+                        isDisplayed()));
+        materialButton4.perform(click());
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.idSubscriptionPrice), withText("$10.99"),
+                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
+                        isDisplayed()));
+        textView2.check(matches(withText("$10.99")));
     }
 
     private static Matcher<View> childAtPosition(

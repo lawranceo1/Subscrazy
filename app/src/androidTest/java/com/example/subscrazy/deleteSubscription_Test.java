@@ -1,19 +1,15 @@
 package com.example.subscrazy;
 
-/*
-    This test checks if a subscription can be added to the database.
- */
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -30,23 +26,21 @@ import androidx.test.filters.LargeTest;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddSubscription_Test {
+public class deleteSubscription_Test {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
-
-    // Test to check if the subscription is being added succesfully
+    //This test checks if a subscription can be deleted from the app
     @Test
-    public void addSubscription_Test() {
+    public void deleteSubscription_Test() {
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.button_first), withText("Add"),
                         childAtPosition(
@@ -65,7 +59,7 @@ public class AddSubscription_Test {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("Netflix"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("Amazon"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.editText_price),
@@ -106,11 +100,22 @@ public class AddSubscription_Test {
                         isDisplayed()));
         materialButton3.perform(click());
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.idSubscriptionName), withText("Netflix"),
-                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.idRVSubscriptions),
+                        childAtPosition(
+                                withClassName(is("android.widget.RelativeLayout")),
+                                2)));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.buttonDelete), withText("Delete"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_host_fragment_content_main),
+                                        0),
+                                9),
                         isDisplayed()));
-        textView.check(matches(withText("Netflix")));
+        materialButton4.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

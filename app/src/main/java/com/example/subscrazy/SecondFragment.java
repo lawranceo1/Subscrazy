@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,7 +19,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.subscrazy.databinding.FragmentSecondBinding;
 
 import java.util.Calendar;
+import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class SecondFragment extends Fragment {
 
     private EditText subNameEdt, priceEdt, dateEdt;
@@ -34,7 +35,7 @@ public class SecondFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater,
+            @NonNull LayoutInflater inflater,
             ViewGroup container,
             Bundle savedInstanceState) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
@@ -49,9 +50,9 @@ public class SecondFragment extends Fragment {
         Context thisContext = this.getContext();
         dbHandler = new DBHandler(thisContext);
 
-        recurrenceSpinner = getView().findViewById(R.id.spinner_time);
+        recurrenceSpinner = requireView().findViewById(R.id.spinner_time);
         ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(getActivity().getBaseContext(),
+                ArrayAdapter.createFromResource(requireActivity().getBaseContext(),
                 R.array.timeselectarray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recurrenceSpinner.setAdapter(adapter);
@@ -60,68 +61,58 @@ public class SecondFragment extends Fragment {
         subNameEdt.setText("");
         priceEdt = getView().findViewById(R.id.editText_price);
         dateEdt = getView().findViewById(R.id.editText_date);
-        dateEdt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-                // date picker dialog
-                DatePickerDialog datePickerDialog = new DatePickerDialog(thisContext,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
-                                dateEdt.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
-                            }
-                        },
-                        mYear,
-                        mMonth,
-                        mDay);
-                datePickerDialog.show();
-            }
+        dateEdt.setOnClickListener(v -> {
+            final Calendar c = Calendar.getInstance();
+            int mYear = c.get(Calendar.YEAR); // current year
+            int mMonth = c.get(Calendar.MONTH); // current month
+            int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+            // date picker dialog
+            DatePickerDialog datePickerDialog = new DatePickerDialog(thisContext,
+                    (view12, year, monthOfYear, dayOfMonth) -> {
+                        // set day of month , month and year value in the edit text
+                        dateEdt.setText(dayOfMonth + "/"
+                                + (monthOfYear + 1) + "/" + year);
+                    },
+                    mYear,
+                    mMonth,
+                    mDay);
+            datePickerDialog.show();
         });
 
-        binding.buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String subName = subNameEdt.getText().toString();
-                String price = priceEdt.getText().toString();
-                String recurrence = recurrenceSpinner.getSelectedItem().toString();
-                String subDate = dateEdt.getText().toString();
-                if (subName.isEmpty() ||
-                        price.isEmpty() ||
-                        recurrence.isEmpty() ||
-                        subDate.isEmpty()) {
-                    Toast.makeText(SecondFragment.this.getContext(),
-                            "Please fill all fields..", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (dbHandler.subscriptionExists(subName)) {
-                    Toast.makeText(SecondFragment.this.getContext(),
-                            "Subscription already exists.. Please try another one.",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Subscription sub = new Subscription(subName, price, recurrence, subDate, "");
-                dbHandler.addNewSubscription(sub);
-
+        binding.buttonSave.setOnClickListener(view1 -> {
+            String subName = subNameEdt.getText().toString();
+            String price = priceEdt.getText().toString();
+            String recurrence = recurrenceSpinner.getSelectedItem().toString();
+            String subDate = dateEdt.getText().toString();
+            if (subName.isEmpty() ||
+                    price.isEmpty() ||
+                    recurrence.isEmpty() ||
+                    subDate.isEmpty()) {
                 Toast.makeText(SecondFragment.this.getContext(),
-                        "Subscription has been added..", Toast.LENGTH_SHORT).show();
-
-                subNameEdt.setText("");
-                priceEdt.setText("");
-                recurrenceSpinner.setAdapter(null);
-                dateEdt.setText("");
-
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                        "Please fill all fields..", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            if (dbHandler.subscriptionExists(subName)) {
+                Toast.makeText(SecondFragment.this.getContext(),
+                        "Subscription already exists.. Please try another one.",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Subscription sub = new Subscription(subName, price, recurrence, subDate, "");
+            dbHandler.addNewSubscription(sub);
+
+            Toast.makeText(SecondFragment.this.getContext(),
+                    "Subscription has been added..", Toast.LENGTH_SHORT).show();
+
+            subNameEdt.setText("");
+            priceEdt.setText("");
+            recurrenceSpinner.setAdapter(null);
+            dateEdt.setText("");
+
+            NavHostFragment.findNavController(SecondFragment.this)
+                    .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });
     }
 

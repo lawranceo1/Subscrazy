@@ -77,9 +77,9 @@ public class ThirdFragment extends Fragment {
 
         // show sub info from bundle
         subNameEdt.setText(SubscriptionRVAdapter.subname);
+        subNameEdt.setEnabled(false);
         priceEdt.setText(SubscriptionRVAdapter.subpayment);
         dateEdt.setText(SubscriptionRVAdapter.subbillingTime);
-        // recurrenceSpinner
 
         binding.buttonSave.setOnClickListener(view12 -> {
             String subName = subNameEdt.getText().toString();
@@ -88,8 +88,7 @@ public class ThirdFragment extends Fragment {
             String subDate = dateEdt.getText().toString();
 
 
-            if (subName.isEmpty() ||
-                    price.isEmpty() ||
+            if (price.isEmpty() ||
                     recurrence.isEmpty() ||
                     subDate.isEmpty()) {
                 Toast.makeText(ThirdFragment.this.getContext(),

@@ -34,7 +34,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NAME_COL + " TEXT,"
+                + NAME_COL + " TEXT UNIQUE,"
                 + PAYMENT_COL + " TEXT,"
                 + RECURRENCE_COL + " TEXT,"
                 + BILLING_COL + " TEXT,"
@@ -45,7 +45,7 @@ public class DBHandler extends SQLiteOpenHelper {
         remainingExpense=0;
     }
 
-    public void addNewSubscription(Subscription s) {
+    public int addNewSubscription(Subscription s) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -55,8 +55,9 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(BILLING_COL, s.getBillingTime());
         values.put(NOTES_COL, s.getNotes());
 
-        db.insert(TABLE_NAME, null, values);
+        int result = (int) db.insert(TABLE_NAME, null, values);
         db.close();
+        return result;
     }
 
 
@@ -113,21 +114,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, "name=?", new String[]{subscriptionName});
         db.close();
     }
-
-    public Boolean subscriptionExists(String subscriptionName) {
-        Boolean result = false;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery(
-                "SELECT name FROM " + TABLE_NAME + " WHERE name = ?",
-                new String[]{subscriptionName});
-
-        if (c.getCount() != 0) result = true;
-        c.close();
-        db.close();
-
-        return result;
-    }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {

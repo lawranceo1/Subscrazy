@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subscrazy.databinding.FragmentFirstBinding;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -152,6 +153,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     }
 
     public void showSelectedExpense() {
+        DecimalFormat df = new DecimalFormat("#.##");
         TextView showExpense = requireView().findViewById(R.id.showExpense);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this.requireContext());
         String option = pref.getString("options", "Total Expense");
@@ -161,13 +163,13 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         switch (option) {
             case "Remaining Budget":
                 double budget = Double.parseDouble(pref.getString("budget", "0.0"));
-                output += getRemainingBudget(budget, dbHandler.getTotalSpending());
+                output += df.format(getRemainingBudget(budget, dbHandler.getTotalSpending()));
                 break;
             case "Remaining Expense":
-                output+= dbHandler.getRemainingExpense();
+                output+= df.format(dbHandler.getRemainingExpense());
                 break;
             default:
-                output +=dbHandler.getTotalSpending();
+                output += df.format(dbHandler.getTotalSpending());
         }
         showExpense.setText(output);
     }

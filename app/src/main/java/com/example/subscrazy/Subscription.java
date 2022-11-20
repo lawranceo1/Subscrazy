@@ -76,7 +76,7 @@ public class Subscription {
     }
 
     public int getRemainingDays() {
-/*        Calendar cal = getDate();
+        Calendar cal = getDate();
         Calendar feb = Calendar.getInstance();
         feb.set(Calendar.MONTH, Calendar.FEBRUARY);
         Calendar tmp = Calendar.getInstance();
@@ -105,7 +105,7 @@ public class Subscription {
 
             return cal.get(Calendar.DAY_OF_MONTH) - tmp.get(Calendar.DAY_OF_MONTH);
         }
- */
+ /*
         int days = 0;
         Calendar cal = getDate();
         Calendar tmp = Calendar.getInstance();
@@ -120,6 +120,7 @@ public class Subscription {
             days = monthdays - today + billday;
         }
         return days;
+*/
     }
 
 

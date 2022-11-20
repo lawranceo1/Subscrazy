@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Subscrazy"
         tools:targetApi="31">
+        <uses-library android:name="android.text.runner" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Subscrazy.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,5 +25,7 @@
             </intent-filter>
         </activity>
     </application>
+
+
 
 </manifest>

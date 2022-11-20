@@ -144,7 +144,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         });
     }
 
-    @SuppressWarnings("unused")
+
     public double getRemainingBudget(double budget, double totalExpense) {
         double remainingBudget = budget - totalExpense;
         if (remainingBudget < 0)

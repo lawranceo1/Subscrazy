@@ -1,6 +1,8 @@
 package com.example.subscrazy;
 
 
+import androidx.annotation.NonNull;
+
 import java.util.Calendar;
 
 @SuppressWarnings("unused")
@@ -67,11 +69,12 @@ public class Subscription {
         this.notes = notes;
     }
 
-    public Calendar getDate(){
-        Calendar cal1 = Calendar.getInstance(); cal1.clear();
+    public Calendar getDate() {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.clear();
         String[] dateParts = this.billingTime.split("/");
 
-        cal1.set(Integer.parseInt(dateParts[2]),Integer.parseInt(dateParts[1])-1,Integer.parseInt(dateParts[0]));
+        cal1.set(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]) - 1, Integer.parseInt(dateParts[0]));
         return cal1;
     }
 
@@ -80,21 +83,22 @@ public class Subscription {
         Calendar feb = Calendar.getInstance();
         feb.set(Calendar.MONTH, Calendar.FEBRUARY);
         Calendar tmp = Calendar.getInstance();
+        int billDay = cal.get(Calendar.DAY_OF_MONTH);
+        int today = tmp.get(Calendar.DAY_OF_MONTH);
 
         if (cal.get(Calendar.DAY_OF_MONTH) <= tmp.get(Calendar.DAY_OF_MONTH)) {
 
             int days = tmp.getActualMaximum(Calendar.DAY_OF_MONTH) - tmp.get(Calendar.DAY_OF_MONTH);
-            System.out.println("Days = "+days);
 
             tmp.add(Calendar.MONTH, 1);
-            if(cal.get(Calendar.DAY_OF_MONTH) >= tmp.getActualMaximum(Calendar.DAY_OF_MONTH)){
+            if (cal.get(Calendar.DAY_OF_MONTH) >= tmp.getActualMaximum(Calendar.DAY_OF_MONTH)) {
                 tmp.set(Calendar.DAY_OF_MONTH, tmp.getActualMaximum(Calendar.DAY_OF_MONTH));
-            }else{
-                tmp.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) );
+            } else {
+                tmp.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH));
             }
             days += tmp.get(Calendar.DAY_OF_MONTH);
-
             return days;
+
         } else {
             if (cal.get(Calendar.MONTH) == Calendar.JANUARY && tmp.get(Calendar.MONTH) == Calendar.FEBRUARY && cal.get(Calendar.DAY_OF_MONTH) > feb.getActualMaximum(Calendar.DAY_OF_MONTH)) {
                 return tmp.getActualMaximum(Calendar.DAY_OF_MONTH) - tmp.get(Calendar.DAY_OF_MONTH);
@@ -123,5 +127,10 @@ public class Subscription {
 */
     }
 
-
+    @NonNull
+    public String toString(){
+        return name+" "+payment+" "+recurrence+" "+billingTime+" "+notes;
+    }
 }
+
+

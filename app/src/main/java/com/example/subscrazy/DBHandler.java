@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -29,7 +31,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
@@ -48,7 +49,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public int addNewSubscription(Subscription s) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-
+        System.out.println(s.getName());
         values.put(NAME_COL, s.getName());
         values.put(PAYMENT_COL, s.getPayment());
         values.put(RECURRENCE_COL, s.getRecurrence());
@@ -59,8 +60,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return result;
     }
-
-
 
     public void updateSubscription(String originalSubName,
                                    String subscriptionName,
@@ -75,9 +74,25 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(RECURRENCE_COL, subscriptionRecurrence);
         values.put(BILLING_COL, subscriptionBillDate);
         //values.put(NOTES_COL, subscriptionNotes);
-
         db.update(TABLE_NAME, values, "name=?", new String[]{originalSubName});
         db.close();
+    }
+
+    public Subscription getSubscription(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Subscription sub=null;
+        Cursor cursorSubscriptions = db.rawQuery("SELECT * FROM " + TABLE_NAME+ " WHERE "+NAME_COL+ "=?",new String[]{name});
+        if(cursorSubscriptions.moveToFirst()){
+            sub = new Subscription(cursorSubscriptions.getString(1),
+                    cursorSubscriptions.getString(2),
+                    cursorSubscriptions.getString(3),
+                    cursorSubscriptions.getString(4),
+                    cursorSubscriptions.getString(5));
+
+        }
+
+        cursorSubscriptions.close();
+        return sub;
     }
 
     public ArrayList<Subscription> readSubscriptions() {
@@ -107,8 +122,8 @@ public class DBHandler extends SQLiteOpenHelper {
         return subscriptionsArrayList;
     }
 
-
     public void deleteSubscription(String subscriptionName) {
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(TABLE_NAME, "name=?", new String[]{subscriptionName});

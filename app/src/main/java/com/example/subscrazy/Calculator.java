@@ -33,7 +33,7 @@ public class Calculator  extends Fragment
     private CalculatorLayoutBinding binding;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull  Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 

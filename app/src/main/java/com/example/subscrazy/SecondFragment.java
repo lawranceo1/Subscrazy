@@ -36,7 +36,7 @@ public class SecondFragment extends Fragment {
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater,
-            ViewGroup container,
+              ViewGroup container,
             Bundle savedInstanceState) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
 
@@ -57,10 +57,10 @@ public class SecondFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recurrenceSpinner.setAdapter(adapter);
 
-        subNameEdt = getView().findViewById(R.id.editText_name);
+        subNameEdt = requireView().findViewById(R.id.editText_name);
         subNameEdt.setText("");
-        priceEdt = getView().findViewById(R.id.editText_price);
-        dateEdt = getView().findViewById(R.id.editText_date);
+        priceEdt = requireView().findViewById(R.id.editText_price);
+        dateEdt = requireView().findViewById(R.id.editText_date);
         dateEdt.setOnClickListener(v -> {
             final Calendar c = Calendar.getInstance();
             int mYear = c.get(Calendar.YEAR); // current year

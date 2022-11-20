@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.preference.PreferenceManager;
@@ -46,7 +47,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view,  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         subscriptionArrayList = new ArrayList<>();
         dbHandler = new DBHandler(this.getContext());
@@ -145,6 +146,20 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     }
 
 
+    public void sort_with_RenewingDays(ArrayList<Subscription> s) {
+        Collections.sort(s, (s1, s2) -> {
+            Calendar cal1 = Calendar.getInstance();
+            cal1.clear();
+            Calendar cal2 = Calendar.getInstance();
+            cal2.clear();
+
+            cal1 = s1.getDate();
+            cal2 = s2.getDate();
+            return cal1.compareTo(cal2);
+        });
+    }
+
+    @SuppressWarnings("unused")
     public double getRemainingBudget(double budget, double totalExpense) {
         double remainingBudget = budget - totalExpense;
         if (remainingBudget < 0)
@@ -160,6 +175,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         TextView expenseOption = requireView().findViewById(R.id.expense_option);
         expenseOption.setText(option);
         String output = "$";
+
         switch (option) {
             case "Remaining Budget":
                 double budget = Double.parseDouble(pref.getString("budget", "0.0"));
@@ -173,4 +189,8 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         }
         showExpense.setText(output);
     }
+
+//    public void addNotification(){
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this.getContext());
+//    }
 }

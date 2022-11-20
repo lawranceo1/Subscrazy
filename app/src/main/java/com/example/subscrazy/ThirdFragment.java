@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.subscrazy.databinding.FragmentThirdBinding;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 
 @SuppressWarnings("unused")
@@ -32,8 +33,8 @@ public class ThirdFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
+            @NonNull LayoutInflater inflater,   ViewGroup container,
+             Bundle savedInstanceState
     ) {
         binding = FragmentThirdBinding.inflate(inflater, container, false);
 
@@ -47,16 +48,16 @@ public class ThirdFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Context thisContext = this.getContext();
         dbHandler = new DBHandler(thisContext);
-        recurrenceSpinner = getView().findViewById(R.id.spinner_time);
+        recurrenceSpinner = requireView().findViewById(R.id.spinner_time);
         ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(getActivity().getBaseContext(),
+                ArrayAdapter.createFromResource(requireActivity().getBaseContext(),
                 R.array.timeselectarray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recurrenceSpinner.setAdapter(adapter);
 
-        subNameEdt = getView().findViewById(R.id.editText_name);
-        priceEdt = getView().findViewById(R.id.editText_price);
-        dateEdt = getView().findViewById(R.id.editText_date);
+        subNameEdt = requireView().findViewById(R.id.editText_name);
+        priceEdt = requireView().findViewById(R.id.editText_price);
+        dateEdt = requireView().findViewById(R.id.editText_date);
         dateEdt.setOnClickListener(v -> {
             final Calendar c = Calendar.getInstance();
             int mYear = c.get(Calendar.YEAR); // current year

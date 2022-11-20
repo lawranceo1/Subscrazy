@@ -27,14 +27,12 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
     public static String subnotes;
 
     private final ArrayList<Subscription> subscriptionArrayList;
-    private final Context context;
     private final Fragment fragment;
 
     public SubscriptionRVAdapter(ArrayList<Subscription> subscriptionArrayList,
                                  Context context,
                                  Fragment fragment) {
         this.subscriptionArrayList = subscriptionArrayList;
-        this.context = context;
         this.fragment = fragment;
     }
 
@@ -102,11 +100,4 @@ public class SubscriptionRVAdapter extends RecyclerView.Adapter<SubscriptionRVAd
         }
     }
 
-
-    public double getRemainingExpense(){
-        double result = 0;
-
-
-        return result;
-    }
 }

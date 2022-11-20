@@ -36,6 +36,7 @@
 
     <!-- Sync Preferences -->
     <string name="notification_title">Receive Notifications</string>
+    <string name="notification">Notification</string>
 
 
 </resources>

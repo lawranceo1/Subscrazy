@@ -68,11 +68,10 @@ tools:context=".ThirdFragment">
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
         android:autofillHints="" />
 
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/buttonDelete"
@@ -82,5 +81,10 @@ tools:context=".ThirdFragment">
         android:text="@string/delete"
         android:textColor="@color/white" />
 
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
 
 </LinearLayout>

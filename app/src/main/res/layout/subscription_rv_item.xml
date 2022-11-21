@@ -11,55 +11,66 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:layout_margin="5dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/idSubscriptionName"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="3dp"
-            android:text="Subscription Name"
-            android:textColor="@color/black" />
+            android:text="@string/subscription_name"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"/>
 
-        <TextView
-            android:id="@+id/idSubscriptionPrice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="3dp"
-            android:text="Price"
-            android:textColor="@color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/idSubscriptionPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:text="@string/price"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"/>
 
 
-        <!--text view for our course duration-->
-        <TextView
-            android:id="@+id/idSubscriptionRecurrence"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="3dp"
-            android:text="Recurrence"
-            android:textColor="@color/black" />
+            <!--text view for our course duration-->
+            <TextView
+                android:id="@+id/idSubscriptionRecurrence"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:text="@string/recurrence"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"/>
 
-        <TextView
-            android:id="@+id/idSubscriptionBillingTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="3dp"
-            android:text="Billing Time"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/idSubscriptionBillingTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:text="@string/billing_time"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins" />
 
-        <TextView
-            android:id="@+id/idSubscriptionNotes"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="0"
-            android:padding="3dp"
-            android:text="Notes"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/idSubscriptionNotes"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0"
+                android:padding="3dp"
+                android:text="@string/notes"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

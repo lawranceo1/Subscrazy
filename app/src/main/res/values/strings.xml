@@ -2,7 +2,7 @@
     <string name="app_name">Subscrazy</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Home</string>
+    <string name="first_fragment_label">Subscrazy</string>
     <string name="second_fragment_label">Add Subscription</string>
     <string name="third_fragment_label">Edit Subscription</string>
     <string name="calculator">Calculator</string>
@@ -37,6 +37,14 @@
     <!-- Sync Preferences -->
     <string name="notification_title">Receive Notifications</string>
     <string name="notification">Notification</string>
+    <string name="todo">TODO</string>
+    <string name="_0_0">0.0</string>
+    <string name="total_expense">Total Expense:</string>
+    <string name="add">Add</string>
+    <string name="subscription_name">Subscription Name</string>
+    <string name="recurrence">Recurrence</string>
+    <string name="billing_time">Billing Time</string>
+    <string name="notes">Notes</string>
 
 
 </resources>

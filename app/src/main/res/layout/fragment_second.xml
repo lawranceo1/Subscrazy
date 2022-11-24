@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="5dp"
         android:text="@string/sub_name" />
 
@@ -18,15 +18,18 @@
         android:id="@+id/editText_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:autofillHints=""
         android:clickable="false"
         android:freezesText="false"
-        android:hint="@string/sub_name"
+        android:hint="ex. Netflix"
+        android:textStyle="bold"
         android:inputType="text" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="5dp"
         android:text="@string/price" />
 
@@ -34,6 +37,7 @@
         android:id="@+id/editText_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/_0_00"
@@ -42,6 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="5dp"
         android:text="@string/cycle" />
 
@@ -49,11 +54,13 @@
         android:id="@+id/spinner_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="5dp"
         android:text="@string/bill_date" />
 
@@ -61,8 +68,8 @@
         android:id="@+id/editText_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:hint="@string/select_date"
-        android:textStyle="bold"
         android:focusable="false"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
         android:inputType="date"

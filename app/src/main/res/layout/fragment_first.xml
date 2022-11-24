@@ -48,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:paddingRight="10dp"
                 android:text="@string/total_expense" />
 
             <TextView
@@ -56,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:textStyle="bold"
                 android:text="@string/_0_0" />
         </LinearLayout>
     </LinearLayout>

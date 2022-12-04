@@ -1,25 +1,31 @@
 package com.example.subscrazy;
 
+
+import static android.content.Context.ALARM_SERVICE;
+
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.subscrazy.databinding.FragmentSecondBinding;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 @SuppressWarnings("unused")
 public class SecondFragment extends Fragment {
@@ -70,8 +76,8 @@ public class SecondFragment extends Fragment {
             DatePickerDialog datePickerDialog = new DatePickerDialog(thisContext,
                     (view12, year, monthOfYear, dayOfMonth) -> {
                         // set day of month , month and year value in the edit text
-                        dateEdt.setText(dayOfMonth + "/"
-                                + (monthOfYear + 1) + "/" + year);
+                        String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                        dateEdt.setText(date);
                     },
                     mYear,
                     mMonth,
@@ -109,7 +115,6 @@ public class SecondFragment extends Fragment {
             priceEdt.setText("");
             recurrenceSpinner.setAdapter(null);
             dateEdt.setText("");
-
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });

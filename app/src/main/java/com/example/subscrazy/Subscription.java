@@ -7,15 +7,15 @@ import java.util.Calendar;
 
 @SuppressWarnings("unused")
 public class Subscription {
-    String name;
-    String payment;
+    private String name;
+    private String payment;
 
     // for billing, ex: every 2(recurrence) months(billing_time)
-    String recurrence;
-    String billingTime;
+    private String recurrence;
+    private String billingTime;
 
-    String notes;
-
+    private String notes;
+    private static int notificationID=0;
     public Subscription(String name,
                         String payment,
                         String recurrence,
@@ -27,8 +27,12 @@ public class Subscription {
         this.recurrence = recurrence;
         this.billingTime = billingTime;
         this.notes = notes;
-    }
+        notificationID++;
 
+    }
+    public int getNotificationID(){
+        return notificationID;
+    }
     public String getName() {
         return this.name;
     }
@@ -83,8 +87,6 @@ public class Subscription {
         Calendar feb = Calendar.getInstance();
         feb.set(Calendar.MONTH, Calendar.FEBRUARY);
         Calendar tmp = Calendar.getInstance();
-        int billDay = cal.get(Calendar.DAY_OF_MONTH);
-        int today = tmp.get(Calendar.DAY_OF_MONTH);
 
         if (cal.get(Calendar.DAY_OF_MONTH) <= tmp.get(Calendar.DAY_OF_MONTH)) {
 
@@ -94,6 +96,7 @@ public class Subscription {
             if (cal.get(Calendar.DAY_OF_MONTH) >= tmp.getActualMaximum(Calendar.DAY_OF_MONTH)) {
                 tmp.set(Calendar.DAY_OF_MONTH, tmp.getActualMaximum(Calendar.DAY_OF_MONTH));
             } else {
+
                 tmp.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH));
             }
             days += tmp.get(Calendar.DAY_OF_MONTH);
@@ -109,22 +112,24 @@ public class Subscription {
 
             return cal.get(Calendar.DAY_OF_MONTH) - tmp.get(Calendar.DAY_OF_MONTH);
         }
- /*
-        int days = 0;
+    }
+
+    public long getAlarmTime(int whenNotify){
         Calendar cal = getDate();
-        Calendar tmp = Calendar.getInstance();
-        int today = tmp.get(Calendar.DATE);
-        int billday = cal.get(Calendar.DATE);
-        int monthdays = tmp.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int diff = billday - today;
-        if(diff >=0 ){
-            days = diff;
-        }
-        else{
-            days = monthdays - today + billday;
-        }
-        return days;
-*/
+        Calendar current = Calendar.getInstance();
+        int subDate = cal.get(Calendar.DAY_OF_MONTH);
+        int today = cal.get(Calendar.DAY_OF_MONTH);
+        Calendar feb = Calendar.getInstance();
+        feb.set(Calendar.MONTH,Calendar.FEBRUARY);
+
+        current.set(Calendar.DAY_OF_MONTH, subDate);
+        current.set(Calendar. SECOND , 0 ) ;
+        current.set(Calendar. MINUTE , 0 ) ;
+        current.set(Calendar. HOUR , 0) ;
+        current.set(Calendar. AM_PM , Calendar. AM ) ;
+        current.add(Calendar.MONTH,1);
+        current.add(Calendar.DAY_OF_MONTH, -whenNotify);
+        return current.getTimeInMillis();
     }
 
     @NonNull

@@ -27,7 +27,6 @@
         <item>Price</item>
         <item>Date</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="delete">Delete</string>
     <!-- Preference Titles -->
     <string name="notification_header">Notifications</string>

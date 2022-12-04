@@ -1,19 +1,12 @@
 package com.example.subscrazy;
 
-/*
-    This test checks if a subscription can be added to the database.
- */
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -30,87 +23,80 @@ import androidx.test.filters.LargeTest;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddSubscription_Test {
+public class Test_Calculator {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
-
-    // Test to check if the subscription is being added succesfully
     @Test
-    public void addSubscription_Test() {
-        ViewInteraction materialButton = onView(
-                allOf(withId(R.id.button_first), withText("Add"),
+    public void test_Calculator() {
+        ViewInteraction floatingActionButton = onView(
+                allOf(withId(R.id.fab), withContentDescription("TODO"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.nav_host_fragment_content_main),
                                         0),
-                                0),
+                                2),
+                        isDisplayed()));
+        floatingActionButton.perform(click());
+
+        ViewInteraction materialButton = onView(
+                allOf(withId(R.id.eight), withText("8"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                1),
                         isDisplayed()));
         materialButton.perform(click());
 
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editText_name),
+        ViewInteraction materialButton2 = onView(
+                allOf(withId(R.id.plus), withText("+"),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.nav_host_fragment_content_main),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText.perform(replaceText("Netflix"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editText_price),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.nav_host_fragment_content_main),
-                                        0),
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        3),
                                 3),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("11.99"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editText_date),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.nav_host_fragment_content_main),
-                                        0),
-                                7),
-                        isDisplayed()));
-        appCompatEditText3.perform(click());
-
-        ViewInteraction materialButton2 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        materialButton2.perform(scrollTo(), click());
+        materialButton2.perform(click());
 
         ViewInteraction materialButton3 = onView(
-                allOf(withId(R.id.button_save), withText("Save"),
+                allOf(withId(R.id.eight), withText("8"),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.nav_host_fragment_content_main),
-                                        0),
-                                8),
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                1),
                         isDisplayed()));
         materialButton3.perform(click());
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.idSubscriptionName), withText("Netflix"),
-                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.equals), withText("="),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        4),
+                                2),
                         isDisplayed()));
-        textView.check(matches(withText("Netflix")));
+        materialButton4.perform(click());
+
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withContentDescription("Navigate up"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withClassName(is("com.google.android.material.appbar.AppBarLayout")),
+                                                0)),
+                                2),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

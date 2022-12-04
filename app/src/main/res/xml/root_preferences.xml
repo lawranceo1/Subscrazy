@@ -22,12 +22,15 @@
 
         <SwitchPreferenceCompat
             app:key="notification"
-            app:title="@string/notification_title" />
+            app:title="@string/notification_title"
+            app:switchTextOn="on"
+            app:switchTextOff="off"/>
 
         <EditTextPreference
             app:dependency="notification"
-            app:key="set_notification"
+            app:key="set_days"
             app:title="Number of Days for Notification"
+            app:defaultValue="10"
             app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>

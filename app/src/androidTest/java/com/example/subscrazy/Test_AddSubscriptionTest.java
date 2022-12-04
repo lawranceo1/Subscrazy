@@ -4,12 +4,14 @@ package com.example.subscrazy;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -26,28 +28,28 @@ import androidx.test.filters.LargeTest;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class deleteSubscription_Test {
+public class Test_AddSubscriptionTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
-    //This test checks if a subscription can be deleted from the app
     @Test
-    public void deleteSubscription_Test() {
+    public void test_AddSubscriptionTest() {
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.button_first), withText("Add"),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.nav_host_fragment_content_main),
+                                        withId(R.id.LLheader),
                                         0),
-                                0),
+                                2),
                         isDisplayed()));
         materialButton.perform(click());
 
@@ -59,7 +61,7 @@ public class deleteSubscription_Test {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("Amazon"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("Netflix"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.editText_price),
@@ -69,7 +71,7 @@ public class deleteSubscription_Test {
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("11.99"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("9.99"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.editText_date),
@@ -90,32 +92,43 @@ public class deleteSubscription_Test {
                                 3)));
         materialButton2.perform(scrollTo(), click());
 
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.editText_price), withText("9.99"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_host_fragment_content_main),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatEditText4.perform(pressImeActionButton());
+
         ViewInteraction materialButton3 = onView(
                 allOf(withId(R.id.button_save), withText("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.nav_host_fragment_content_main),
                                         0),
-                                8),
+                                9),
                         isDisplayed()));
         materialButton3.perform(click());
 
-        ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.idRVSubscriptions),
-                        childAtPosition(
-                                withClassName(is("android.widget.RelativeLayout")),
-                                2)));
-        recyclerView.perform(actionOnItemAtPosition(0, click()));
-
-        ViewInteraction materialButton4 = onView(
-                allOf(withId(R.id.buttonDelete), withText("Delete"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.nav_host_fragment_content_main),
-                                        0),
-                                9),
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.idSubscriptionName), withText("Netflix"),
+                        withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout.class))),
                         isDisplayed()));
-        materialButton4.perform(click());
+        textView.check(matches(withText("Netflix")));
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.idSubscriptionPrice), withText("$9.99"),
+                        withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class))),
+                        isDisplayed()));
+        textView2.check(matches(withText("$9.99")));
+
+        ViewInteraction textView3 = onView(
+                allOf(withId(R.id.idSubscriptionPrice), withText("$9.99"),
+                        withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class))),
+                        isDisplayed()));
+        textView3.check(matches(withText("$9.99")));
     }
 
     private static Matcher<View> childAtPosition(
